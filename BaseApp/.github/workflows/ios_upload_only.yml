@@ -1,0 +1,44 @@
+# Upload to TestFlight only. Use when you already have an ios-build artifact
+# from a previous run (e.g. iOS Full or iOS Build only). Enter that run's ID.
+# Re-run only upload without rebuilding.
+
+name: iOS Upload only
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'Run ID of the workflow run that produced the ios-build artifact'
+        required: true
+        type: string
+
+jobs:
+  upload:
+    name: Upload to TestFlight
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby env
+        uses: ruby/setup-ruby@v1.269.0
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+
+      - name: Download ios-build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-build
+          run-id: ${{ inputs.run_id }}
+
+      - name: Copy build_number.txt for lane
+        run: cp ios-build/build_number.txt .
+
+      - name: Upload to TestFlight
+        run: bundle exec fastlane ios upload_testflight_only ipa_path:$(pwd)/ios-build/App.ipa
+        env:
+          ASC_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.APPSTORE_P8 }}
+          APPLE_APP_ID: ${{ vars.APPLE_APP_ID }}

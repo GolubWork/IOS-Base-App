@@ -1,0 +1,93 @@
+# Full iOS flow: Build (match, archive, artifact) → Upload to TestFlight.
+# On Upload failure you can re-run only the upload job from the Actions UI.
+
+name: iOS Full
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: 'latest-stable'
+
+      - name: List available simulator runtimes (for debugging)
+        run: xcrun simctl list runtimes
+
+      - name: Set up Ruby env
+        uses: ruby/setup-ruby@v1.269.0
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+
+      - name: Generate MATCH_GIT_BASIC_AUTHORIZATION
+        run: |
+          echo -n "NikDyr:${GH_PAT}" | base64 > base64.txt
+          echo "MATCH_GIT_BASIC_AUTHORIZATION=$(cat base64.txt)" >> $GITHUB_ENV
+        env:
+          GH_PAT: ${{ secrets.GH_PAT }}
+
+      - name: Build for TestFlight
+        run: bundle exec fastlane ios build_for_testflight
+        env:
+          ASC_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.APPSTORE_P8 }}
+          MATCH_GIT_BASIC_AUTHORIZATION: ${{ env.MATCH_GIT_BASIC_AUTHORIZATION }}
+          MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+          TEAM_ID: ${{ vars.APPLE_TEAM_ID }}
+          BUNDLE_IDENTIFIER: ${{ vars.BUNDLE_IDENTIFIER }}
+          MATCH_GIT_URL: ${{ vars.MATCH_GIT_URL }}
+          LAST_UPLOADED_BUILD_NUMBER: ${{ vars.LAST_UPLOADED_BUILD_NUMBER }}
+          XC_TARGET_NAME: ${{ vars.XC_TARGET_NAME }}
+
+      - name: Prepare ios-build artifact
+        run: |
+          mkdir -p ios-build
+          IPA_PATH=$(cat ipa_path.txt)
+          cp "$IPA_PATH" ios-build/App.ipa
+          cp build_number.txt ios-build/
+
+      - name: Upload ios-build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-build
+          path: ios-build/
+
+  upload:
+    name: Upload to TestFlight
+    needs: build
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby env
+        uses: ruby/setup-ruby@v1.269.0
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+
+      - name: Download ios-build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ios-build
+
+      - name: Copy build_number.txt for lane
+        run: cp ios-build/build_number.txt .
+
+      - name: Upload to TestFlight
+        run: bundle exec fastlane ios upload_testflight_only ipa_path:$(pwd)/ios-build/App.ipa
+        env:
+          ASC_KEY_ID: ${{ secrets.APPSTORE_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+          ASC_KEY: ${{ secrets.APPSTORE_P8 }}
+          APPLE_APP_ID: ${{ vars.APPLE_APP_ID }}

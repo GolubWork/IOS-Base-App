@@ -1,190 +1,147 @@
-# LaughingDrops
+# IceVault (BaseApp)
 
-iOS приложение для трекинга потребления воды с интеграцией веб-контента и аналитики.
+iOS-приложение на SwiftUI с веб-интеграцией, аналитикой и режимом Game (менеджер паролей). Сборка и деплой через Fastlane и GitHub Actions.
 
-## Описание
+## Возможности
 
-LaughingDrops — приложение для отслеживания ежедневного потребления воды с функциями:
-- Трекинг воды с визуальным прогрессом
-- Календарь истории потребления
-- Графики статистики
-- Достижения и мотивация
-- Push-уведомления
-- Веб-интеграция
-- AppsFlyer аналитика
-- Firebase Remote Config
+- **Старт приложения:** первый запуск, загрузка, проверка сети, запрос push-уведомлений
+- **Режим Game:** три экрана — генератор паролей, сохранение пароля (URL/название, пароль, заметка), список сохранённых с копированием в буфер
+- **Веб-режим:** отображение контента по URL
+- **Инфраструктура:** AppsFlyer, Firebase (Core, Messaging, Remote Config), push-токены, Match (подпись)
 
-## Технологии
+## Стек
 
-- SwiftUI — UI фреймворк
-- Firebase — Core, Messaging, RemoteConfig
-- AppsFlyer — аналитика и атрибуция
-- CocoaPods — менеджер зависимостей
-- Fastlane — автоматизация CI/CD
-- GitHub Actions — CI/CD
+- **SwiftUI** — UI
+- **Firebase** — Core, Messaging, Remote Config
+- **AppsFlyer** — аналитика и атрибуция
+- **CocoaPods** — зависимости
+- **Fastlane** — сборка и загрузка в TestFlight
+- **GitHub Actions** — CI
 
 ## Требования
 
-- macOS 12.0+
-- Xcode 14.0+
-- iOS 11.0+
+- macOS 12+
+- Xcode 14+ (рекомендуется 16.x)
+- iOS 16.0+ (деплой таргет из Podfile)
 - Ruby 3.3+
-- CocoaPods 1.15.2+
+- Bundler, CocoaPods 1.16+
 
 ## Установка
 
-### 1. Клонирование
-
 ```bash
 git clone <repository-url>
-cd Laughingdrops
-```
-
-### 2. Установка зависимостей
-
-```bash
+cd BaseApp
 bundle install
-pod install
+bundle exec pod install
 ```
 
-**Важно:** CocoaPods зависимости устанавливаются автоматически через Fastlane при запуске CI/CD.
+Открыть **`BaseApp.xcworkspace`** (не `.xcodeproj`). Добавить `GoogleService-Info.plist` в корень проекта при использовании Firebase.
 
-### 3. Настройка
+Конфигурация сборки: `App/BuildConfiguration.swift`, xcconfig в `Resources/Configurations/` (Debug, Staging, Release).
 
-1. Откройте `LaughingDrops.xcworkspace` (не `.xcodeproj`)
-2. Добавьте `GoogleService-Info.plist` в корень проекта
-3. Проверьте настройки в `AppConfig.swift`
+## Запуск
 
-### 4. Запуск
+В Xcode: схема **BaseApp** → Run (⌘R).  
+Или из терминала:
 
 ```bash
-# Через Xcode: ⌘ + R
-# Или через командную строку:
-xcodebuild -workspace LaughingDrops.xcworkspace -scheme LaughingDrops build
+xcodebuild -workspace BaseApp.xcworkspace -scheme BaseApp -destination 'platform=iOS Simulator,name=iPhone 16' build
 ```
+
+## Архитектура
+
+Clean Architecture: зависимости направлены к Domain, слой Domain не зависит от UI и конкретных реализаций.
+
+- **Domain** (Core/Domain, Features/*/Domain): сущности, протоколы репозиториев и use cases
+- **Data** (Core/Data, Features/*/Data): реализации репозиториев и data sources
+- **Presentation** (Core/Presentation, Features/*/Presentation): ViewModels и Views
+- **Infrastructure**: конфигурация, DI (`DependencyContainer`), логгер
+
+Контейнер зависимостей создаётся в **AppDelegate** при старте и передаётся в SwiftUI через `environment(\.dependencyContainer, container)`. Тесты могут подменить контейнер через `AppDependencies.containerForTesting` до запуска приложения.
+
+Подробно: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md).
 
 ## Структура проекта
 
 ```
-LaughingDrops/
-├── App/                  # Точка входа и делегаты
-├── Game/                 # Основные экраны (WaterTracker, Calendar, Charts, Achievements)
-├── Services/             # API, AppsFlyer, Firebase
-├── ViewModels/           # AppViewModel
-├── Views/                # UI компоненты
-├── Utils/                # Логирование, хелперы
-└── AppConfig.swift       # Конфигурация
-
-notifications/            # Notification Extension
-fastlane/                 # CI/CD конфигурация
+BaseApp/
+├── App/                    # Точка входа: BaseApp, AppDelegate, AppDependencies, BuildConfiguration
+├── Core/                    # Общий Domain, Data, Presentation
+│   ├── Domain/
+│   ├── Data/
+│   └── Presentation/       # RootView, LoadingView, MainTabView, GameWindow, WebWindow, экраны ошибок
+├── Features/
+│   ├── AppInitialization/  # Инициализация (use case, состояние приложения)
+│   ├── Analytics/          # AppsFlyer
+│   ├── Networking/         # Server API
+│   ├── Notifications/      # FCM, push-токены
+│   ├── PasswordManager/    # Game mode: генератор, сохранение, список паролей
+│   └── WebView/            # Протоколы веб-контента
+├── Infrastructure/         # Configuration, DI, Logging, OrientationLock
+├── Resources/              # Assets, xcconfig, Preview Content
+├── fastlane/
+│   ├── Fastfile            # Точка входа: before_all, import лейнов
+│   ├── lanes/ios.rb        # Лейны: build_for_testflight, upload_testflight_only, build_upload_testflight
+│   └── MatchFile           # Match (git_url, app_identifier)
+├── notifications/          # Notification Service Extension
+└── .github/workflows/       # iOS build & upload (workflow_dispatch)
 ```
 
 ## CI/CD
 
-### GitHub Actions
+Workflow: **`.github/workflows/ios_single_flow.yml`** (ручной запуск: workflow_dispatch).
 
-Автоматический деплой через GitHub Actions (`.github/workflows/ios_single_flow.yml`).
+Шаги: checkout → Xcode → Ruby/Bundler → генерация MATCH auth → **Fastlane** `ios build_upload_testflight` (match, подпись, сборка, загрузка в TestFlight).
 
-**Процесс:**
-1. Checkout кода
-2. Установка Xcode 16.3 и Ruby 3.3
-3. Установка CocoaPods (через Fastlane)
-4. Синхронизация сертификатов (Match)
-5. Сборка и загрузка в TestFlight
+### Secrets (GitHub → Settings → Secrets and variables → Actions)
 
-### Необходимые переменные
-
-**Secrets:**
 - `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY` — App Store Connect API
-- `GH_PAT` — GitHub PAT для Match
-- `MATCH_PASSWORD` — пароль сертификатов
+- `GH_PAT` — GitHub PAT для доступа к репозиторию Match
+- `MATCH_PASSWORD` — пароль для сертификатов Match
 
-**Variables:**
+### Variables
+
 - `APPLE_TEAM_ID`, `BUNDLE_IDENTIFIER`, `XC_TARGET_NAME`
-- `MATCH_GIT_URL` — репозиторий с сертификатами
-- `LAST_UPLOADED_BUILD_NUMBER`
+- `MATCH_GIT_URL` — репозиторий с сертификатами (git)
+- `LAST_UPLOADED_BUILD_NUMBER` — последний загруженный номер сборки (обновляется после успешного upload)
+- `APPLE_APP_ID` — числовой Apple ID приложения (для upload_to_testflight)
 
 ### Локальный деплой
 
 ```bash
-# 1. Установите переменные окружения (см. выше)
-# 2. Настройте Match (первый раз)
-bundle exec fastlane match appstore
-
-# 3. Деплой
+# Переменные окружения должны быть заданы (см. выше)
+bundle exec fastlane match appstore   # при первой настройке
 bundle exec fastlane ios build_upload_testflight
 ```
 
-## Конфигурация
+Отдельные этапы (при разбиении пайплайна на jobs):  
+`build_for_testflight` — только сборка (пишет `ipa_path.txt`, `build_number.txt`);  
+`upload_testflight_only` — загрузка по пути к IPA (опция `ipa_path:` или `ENV["IPA_PATH"]`).
 
-### AppConfig.swift
+## Конфигурация приложения
 
-```swift
-let serverURL: String = "https://laughingdropspop.com/config.php"
-let storeId: String = "6756708872"
-let firebaseProjectId: String = "662865312172"
-let appsFlyerDevKey: String = "zjmEk65LDPa3K8s4BWnpfA"
-```
+- **BuildConfiguration** (`App/BuildConfiguration.swift`): текущая конфигурация (Debug/Staging/Release).
+- **AppConfiguration** (`Infrastructure/Configuration/`): URL сервера, Store ID, Firebase, AppsFlyer — из Info.plist (xcconfig → `INFOPLIST_KEY_*`). Секреты не хранить в коде; в CI — через Variables/Secrets.
+- **xcconfig:** `Resources/Configurations/Debug.xcconfig`, `Staging.xcconfig`, `Release.xcconfig`.
 
-### Debug флаги
+## Зависимости (CocoaPods)
 
-```swift
-let isDebug: Bool = false           // Режим отладки
-let isGameOnly: Bool = true         // Только игра (без веб)
-let isWebOnly: Bool = false         // Только веб (без игры)
-let isNoNetwork: Bool = false       // Симуляция отсутствия сети
-```
+- `AppsFlyerFramework`
+- `Firebase/Core`, `Firebase/Messaging`, `Firebase/RemoteConfig`
 
-## Зависимости
+Установка: `bundle exec pod install`. Gemfile: Fastlane + CocoaPods + xcodeproj (для лейнов и подов).
 
-- `AppsFlyerFramework` — аналитика
-- `Firebase/Core` — Firebase
-- `Firebase/Messaging` — push-уведомления
-- `Firebase/RemoteConfig` — удаленная конфигурация
+## Частые проблемы
 
-Установка: `pod install` (или автоматически через Fastlane)
+- **Нет модуля AppsFlyer / Firebase** — открыть `BaseApp.xcworkspace`, выполнить `bundle exec pod install`.
+- **Ошибки подписи в CI** — проверить Secrets/Variables, доступ к репозиторию Match, при необходимости пересоздать сертификаты: `bundle exec fastlane match appstore --force`.
+- **Firebase не инициализируется** — проверить наличие и Target Membership у `GoogleService-Info.plist`, настройки в Firebase Console и APNs.
+- **В Git-Rider не видно изменений** — репозиторий находится в родительской папке относительно BaseApp; открыть проект от корня репозитория или добавить его как VCS root. Подробнее: [Docs/TROUBLESHOOTING.md](Docs/TROUBLESHOOTING.md#ide--git-not-showing-changes-eg-git-rider)..
 
-## Troubleshooting
+## Ссылки
 
-### Ошибка: `no such module 'AppsFlyerLib'`
-
-**Решение:**
-```bash
-pod install
-# Открывайте .xcworkspace, а не .xcodeproj
-```
-
-### Ошибка: `ARCHIVE FAILED` в CI/CD
-
-**Возможные причины:**
-- Отсутствующие зависимости CocoaPods
-- Неверные GitHub Secrets (Match, App Store Connect)
-- Истекший `GH_PAT`
-- Проблемы с сертификатами
-
-**Решение:**
-1. Проверьте GitHub Secrets и Variables
-2. Убедитесь, что Match репозиторий доступен
-3. Проверьте логи на ошибки
-
-### Code Signing ошибки
-
-```bash
-bundle exec fastlane match appstore --force
-```
-
-### Firebase не работает
-
-1. Проверьте наличие `GoogleService-Info.plist` в проекте
-2. Убедитесь, что файл добавлен в Target Membership
-3. Проверьте APNs сертификаты в Firebase Console
-
-## Полезные ссылки
-
-- [SwiftUI Documentation](https://developer.apple.com/documentation/swiftui)
-- [Firebase iOS SDK](https://firebase.google.com/docs/ios/setup)
-- [AppsFlyer iOS SDK](https://dev.appsflyer.com/hc/docs/ios-sdk-reference-appsflyerlib)
-- [Fastlane Documentation](https://docs.fastlane.tools/)
-- [iOS Code Signing](https://docs.fastlane.tools/codesigning/getting-started/)
-
-
+- [SwiftUI](https://developer.apple.com/documentation/swiftui)
+- [Firebase iOS](https://firebase.google.com/docs/ios/setup)
+- [AppsFlyer iOS](https://dev.appsflyer.com/hc/docs/ios-sdk-reference-appsflyerlib)
+- [Fastlane](https://docs.fastlane.tools/)
+- [Code Signing (Fastlane)](https://docs.fastlane.tools/codesigning/getting-started/)
