@@ -15,8 +15,6 @@
 
 ![Таргеты проекта: BaseProject и notifications](images/project-targets.png)
 
-*Сохраните скриншот настроек проекта (Project Navigator с выбранным BaseProject и двумя таргетами в TARGETS) в `Docs/images/project-targets.png`, чтобы иллюстрация отображалась в документации.*
-
 ---
 
 ## 2. Signing: Team и Bundle Identifier (основное приложение и Notification)
@@ -33,8 +31,6 @@
 
 ![Signing для таргета BaseProject: Team и Bundle Identifier](images/signing-baseproject.png)
 
-*Сохраните скриншот вкладки Signing & Capabilities для таргета BaseProject в `Docs/images/signing-baseproject.png`.*
-
 ### Таргет notifications (расширение уведомлений)
 
 1. В левой панели выберите таргет **notifications** (в секции TARGETS).
@@ -45,10 +41,8 @@
 
 ![Signing для таргета notifications: Team и Bundle Identifier](images/signing-notifications.png)
 
-*Сохраните скриншот вкладки Signing & Capabilities для таргета notifications в `Docs/images/signing-notifications.png`.*
-
-Если после настройки Xcode показывает предупреждения о provisioning profile (например, «No profiles for '…' were found» или «Your team has no devices»), подключите устройство к Mac или добавьте UDID устройств в [Certificates, Identifiers & Profiles](https://developer.apple.com/account/); при автоматическом управлении подписью Xcode создаст профили при первой сборке.
-
+Если после настройки Xcode показывает предупреждения о provisioning profile (например, «No profiles for '…' were found» или «Your team has no devices»), 
+это нормально, ничего не делаем.
 ---
 
 ## 3. Переименование проекта и таргета
@@ -59,21 +53,39 @@
 2. Справа в окне (Inspector) поменяй имя в поле **Name** в секции Identity and Type.
 3. Xcode спросит: *"Rename project content items?"* — лучше выбрать **Rename**, чтобы заодно переименовались папка, схема и т.п.
 
+![Rename: Project](images/rename-project.png)
+
 ### Переименование таргета
 
 1. В **Project Navigator** в секции **TARGETS** выбери нужный таргет (например, BaseProject или notifications).
 2. Один раз кликни по нему, затем ещё раз медленно кликни по имени (или нажми Enter) — имя станет редактируемым.
 3. Введи новое имя и нажми **Enter**.
 
+![Rename: Target](images/rename-target.png)
+
 **Важно для Podfile:** в списке **TARGETS** порядок должен быть таким: **первый** — основное приложение (main app), **второй** — **notifications** (расширение уведомлений). Podfile автоматически подставляет в поды имя первого таргета (кроме notifications). Если notifications будет первым или порядок изменится, при `pod install` может возникнуть ошибка. При переименовании проекта не переименовывай таргет **notifications** в другое имя без правки Podfile (в нём указан вложенный таргет `notifications`).
+
+![Target: Order](images/target-order.png)
 
 ### Синхронизация подов после переименования
 
 После переименования проекта или таргета нужно обновить поды, чтобы sandbox совпадал с `Podfile.lock`:
 
-1. Откройте терминал и перейдите в **корень проекта** (папка, где лежат `Podfile`, `Podfile.lock` и `.xcodeproj`).
-2. Выполните **`bundle exec pod install`** (если в проекте используется Bundler; иначе — `pod install`).
-3. После успешного завершения откройте в Xcode файл **`.xcworkspace`** (а не `.xcodeproj`) и соберите проект (⌘B).
+1. Закройте проект
+2. Откройте ваш проект `.xcodeproj` при помощи вашей IDE (не xcode)
+3. Замените поле ProjectVersion = XX на ProjectVersion = 77, сохраните, закройте
+
+![Pod Install-stage-1](images/install-stage-1.png)
+4. Откройте терминал и перейдите в **корень проекта** (папка, где лежат `Podfile`, `Podfile.lock` и `.xcodeproj`).
+
+![Pod Install-stage-2](images/install-stage-2.png)
+5. Выполните **`bundle exec pod install`** (если в проекте используется Bundler; иначе — `pod install`).
+
+![Pod Install-stage-3](images/install-stage-3.png)
+6. После успешного завершения откройте в Xcode файл **`.xcworkspace`** (а не `.xcodeproj`) и соберите проект.
+
+![Pod Install-stage-4](images/install-stage-4.png)
+
 
 Это обязательный этап после переименования: без него сборка может завершиться с ошибкой *"The sandbox is not in sync with the Podfile.lock"* (подробнее см. [TROUBLESHOOTING.md](TROUBLESHOOTING.md)).
 
@@ -114,21 +126,12 @@ INFOPLIST_KEY_FIREBASE_PROJECT_ID = $(FIREBASE_PROJECT_ID)
 INFOPLIST_KEY_APPSFLYER_DEV_KEY = $(APPSFLYER_DEV_KEY)
 ```
 
-Их не нужно удалять: они передают значения в Bundle, откуда их читает `AppConfiguration`. Для Debug можно указать тестовый/студийный URL и ключи; для Release — боевые (не коммитьте реальные секреты в репозиторий: используйте xcconfig из CI или защищённого хранилища). После изменения xcconfig пересоберите проект (⌘B).
+Их не нужно удалять: они передают значения в Bundle, откуда их читает `AppConfiguration`.
 
 ### 4.2. Замена GoogleService-Info.plist
 
-В корне проекта лежит **`GoogleService-Info.plist`** — конфигурация Firebase (Cloud Messaging для push-уведомлений, Analytics и т.д.). В базовом репозитории он содержит данные примера; при создании своего приложения его нужно **заменить** своим файлом.
-
-**Как заменить:**
-
-1. Зайдите в [Firebase Console](https://console.firebase.google.com/), выберите свой проект (или создайте новый).
-2. Добавьте iOS-приложение с Bundle ID вашего основного таргета (как в Signing, см. раздел 2).
-3. Скачайте **GoogleService-Info.plist** (в настройках проекта → «Ваши приложения» → ваше iOS-приложение → «Скачать GoogleService-Info.plist»).
-4. В Finder положите скачанный файл в **корень проекта** (рядом с `App`, `Core`, `Podfile`), заменив существующий `GoogleService-Info.plist`.
-5. В Xcode убедитесь, что у файла включён **Target Membership** для таргета основного приложения (BaseProject или ваше имя): в инспекторе справа отметьте галочку основного приложения. Файл не должен быть привязан только к таргету notifications.
-
-После замены пересоберите проект. Если Firebase не инициализируется или push не приходят — проверьте Bundle ID в plist и настройки в Firebase Console (APNs, ключи). Подробнее см. [TROUBLESHOOTING.md](TROUBLESHOOTING.md) (раздел Firebase / GoogleService).
+В корне проекта лежит **`GoogleService-Info.plist`** — конфигурация Firebase (Cloud Messaging для push-уведомлений, Analytics и т.д.). 
+В базовом репозитории он содержит данные примера; при создании своего приложения его нужно удалить этот и добавить ваш.
 
 ---
 
@@ -153,12 +156,10 @@ Features/
     Presentation/ (здесь — ViewModel и экраны)
 ```
 
-Файлы в этих папках Xcode подхватит автоматически, если в проекте включена синхронизация с файловой системой (File System Synchronized Root Groups для `Features`). Если вы добавляете файлы вручную в Finder — затем в Xcode обновите проект (правый клик по `Features` → Refresh, если доступно) или добавьте файлы в таргет через File → Add Files to "BaseProject".
-
 ### Шаг 2. Domain: сущность и протоколы
 
 1. В Xcode в навигаторе откройте `Features` → `PasswordManager` → `Domain`.
-2. File → New → File… → Swift File. Имя: `Password.swift`. Сохраните в `Features/PasswordManager/Domain/`.
+2. File → New → EmptyFile… → Имя: `Password.swift`. Сохраните в `Features/PasswordManager/Domain/`.
 3. Опишите сущность, репозиторий и все use cases в одном файле (или разбейте на отдельные файлы):
 
 ```swift
@@ -171,6 +172,9 @@ struct Password: Equatable {
     var value: String
     var createdAt: Date
 }
+```
+```swift
+import Foundation
 
 /// Repository protocol for passwords. Domain layer only; implementation is in Data.
 protocol PasswordRepositoryProtocol: AnyObject {
@@ -178,21 +182,37 @@ protocol PasswordRepositoryProtocol: AnyObject {
     func save(_ password: Password) async throws
     func delete(id: UUID) async throws
 }
+```
+
+```swift
+import Foundation
 
 /// Use case: generate password with separate flags for digits, uppercase, lowercase.
 protocol GeneratePasswordUseCaseProtocol {
     func execute(length: Int, useDigits: Bool, useUppercase: Bool, useLowercase: Bool) -> String
 }
+```
+
+```swift
+import Foundation
 
 /// Use case: save a password.
 protocol SavePasswordUseCaseProtocol {
     func execute(title: String, value: String) async throws
 }
+```
+
+```swift
+import Foundation
 
 /// Use case: get all saved passwords.
 protocol GetPasswordsUseCaseProtocol {
     func execute() async throws -> [Password]
 }
+```
+
+```swift
+import Foundation
 
 /// Use case: delete a saved password.
 protocol DeletePasswordUseCaseProtocol {
@@ -200,11 +220,10 @@ protocol DeletePasswordUseCaseProtocol {
 }
 ```
 
-4. Добавьте файл в таргет **BaseProject** (в правой панели включите Target Membership → BaseProject), если добавляли файл вручную.
-
 ### Шаг 3. Data: реализация репозитория и use cases
 
-1. File → New → File… → Swift File. Имя: `PasswordLocalDataSource.swift`. Путь: `Features/PasswordManager/Data/`. Реализуйте хранение (например, в памяти или UserDefaults/Keychain):
+1. Путь: `Features/PasswordManager/Data/`.
+2. File → New → EmptyFile… → Имя: `PasswordLocalDataSource.swift`. Реализуйте хранение (например, в памяти или UserDefaults/Keychain):
 
 ```swift
 import Foundation
@@ -219,7 +238,7 @@ final class PasswordLocalDataSource {
 }
 ```
 
-2. Создайте файл `PasswordRepository.swift` в той же папке — реализация протокола из Domain:
+3. Создайте файл `PasswordRepository.swift` в той же папке — реализация протокола из Domain:
 
 ```swift
 import Foundation
@@ -245,7 +264,8 @@ final class PasswordRepository: PasswordRepositoryProtocol {
 }
 ```
 
-3. Реализуйте use cases в `Features/PasswordManager/Data/` — отдельные файлы: `GeneratePasswordUseCase.swift`, `SavePasswordUseCase.swift`, `GetPasswordsUseCase.swift`, `DeletePasswordUseCase.swift`:
+4. Реализуйте use cases в `Features/PasswordManager/Data/` — отдельные файлы: 
+5. `GeneratePasswordUseCase.swift`, `SavePasswordUseCase.swift`, `GetPasswordsUseCase.swift`, `DeletePasswordUseCase.swift`:
 
 **GeneratePasswordUseCase.swift:**
 
@@ -279,7 +299,7 @@ final class SavePasswordUseCase: SavePasswordUseCaseProtocol {
 }
 ```
 
-**GetPasswordsUseCase.swift** (именно этот класс должен быть в файле с именем GetPasswordsUseCase.swift, не путать с GeneratePasswordUseCase):
+**GetPasswordsUseCase.swift** 
 
 ```swift
 import Foundation
@@ -304,8 +324,6 @@ final class DeletePasswordUseCase: DeletePasswordUseCaseProtocol {
     func execute(id: UUID) async throws { try await repository.delete(id: id) }
 }
 ```
-
-4. Убедитесь, что все файлы входят в таргет BaseProject.
 
 ### Шаг 4. Presentation: ViewModel и экраны
 
@@ -383,7 +401,8 @@ final class PasswordListViewModel: ObservableObject {
 }
 ```
 
-3. Создайте SwiftUI-экраны `PasswordGeneratorView.swift` и `PasswordListView.swift` в той же папке (генератор: слайдер 4–32, Toggle для цифр/заглавных/малых, контент по центру; список: название, пароль с копированием по нажатию, кнопка удаления — см. шаг 4.1). **Базовый подход к фону в режиме игры:** фон `gameBackground` рисуется **внутри каждого экрана** (ZStack с картинкой снизу и контентом сверху), а не в RootView; у List — `.scrollContentBackground(.hidden)` и `.listRowBackground(Color.clear)`:
+3. Создайте SwiftUI-экраны `PasswordGeneratorView.swift` и `PasswordListView.swift` в той же папке (генератор: слайдер 4–32, Toggle для цифр/заглавных/малых, контент по центру; список: название, пароль с копированием по нажатию, кнопка удаления — см. шаг 4.1). 
+4. **Базовый подход к фону в режиме игры:** фон `gameBackground` рисуется **внутри каждого экрана** (ZStack с картинкой снизу и контентом сверху), а не в RootView; у List — `.scrollContentBackground(.hidden)` и `.listRowBackground(Color.clear)`:
 
 ```swift
 import SwiftUI
@@ -438,6 +457,11 @@ struct PasswordGeneratorView: View {
         }
     }
 }
+```
+
+```swift
+import SwiftUI
+import UIKit
 
 struct PasswordListView: View {
     @StateObject private var viewModel: PasswordListViewModel
@@ -482,8 +506,6 @@ struct PasswordListView: View {
 }
 ```
 
-4. Все файлы добавьте в таргет BaseProject.
-
 ### Шаг 4.1. Функционал экрана Passwords: копирование и удаление
 
 В экране списка паролей (Passwords) заложено два действия:
@@ -496,7 +518,7 @@ struct PasswordListView: View {
 ### Шаг 5. DI: зарегистрировать зависимости и передать во View
 
 1. Откройте `Infrastructure/DI/DependencyContainer.swift`.
-2. В протокол `DependencyContainer` добавьте свойства (имя свойства для списка паролей — **getPasswordsUseCase**, не getPasswordUseCase):
+2. В протокол `DependencyContainer` добавьте свойства:
 
 ```swift
 var passwordRepository: PasswordRepositoryProtocol { get }
@@ -505,9 +527,12 @@ var savePasswordUseCase: SavePasswordUseCaseProtocol { get }
 var getPasswordsUseCase: GetPasswordsUseCaseProtocol { get }
 var deletePasswordUseCase: DeletePasswordUseCaseProtocol { get }
 ```
+![DI DependencyContainer](images/di-dependencycontainer.png)
+
 
 3. В классе `DefaultDependencyContainer` добавьте те же поля и параметры инициализатора (типы параметров — протоколы или конкретные классы; имя параметра для списка — **getPasswordsUseCase**, тип — **GetPasswordsUseCase**). В теле `init` присвойте все пять свойств, в том числе `self.getPasswordsUseCase = getPasswordsUseCase` и `self.deletePasswordUseCase = deletePasswordUseCase`.
 
+![DI DependencyContainer](images/di-default-dependencyContainer.png)
 4. Откройте `App/AppDependencies.swift`.
 5. В методе `makeDefaultContainer()` создайте все зависимости и передайте в контейнер (включая **DeletePasswordUseCase** и правильный лейбл **getPasswordsUseCase:**):
 
@@ -536,6 +561,7 @@ return DefaultDependencyContainer(
     deletePasswordUseCase: deletePasswordUseCase
 )
 ```
+![DI MakeDefaultContainer](images/di-makeDefaultContainer.png)
 
 6. В том месте, где показываются экраны PasswordManager (например, в `MainTabView`), контейнер из Environment имеет тип опциональный (`DependencyContainer?`), поэтому его нужно развернуть; для списка паролей передайте также **deletePasswordUseCase**.
 
@@ -577,9 +603,12 @@ struct MainTabView: View {
 }
 ```
 
-После сохранения файлов проект должен собираться. Запустите приложение (⌘R) и проверьте экраны: генератор (слайдер 4–32, чекбоксы, контент по центру) и список паролей (название, пароль, кнопка удаления).
+После сохранения файлов проект должен собираться. Запустите приложение и проверьте экраны: генератор (слайдер 4–32, чекбоксы, контент по центру) и список паролей (название, пароль, кнопка удаления).
 
 **Фон в режиме игры (база):** в `RootView` для `.game` показывается только `MainTabView()` — без общего ZStack с картинкой. Фон `gameBackground` рисуется **внутри каждого экрана** (как в примерах выше в шаге 3): ZStack с `Image("gameBackground")` и `.ignoresSafeArea(.container, edges: .all)`, контент сверху. Для List — `.scrollContentBackground(.hidden)` и `.listRowBackground(Color.clear)`. Новые экраны в режиме игры делайте по той же схеме.
+
+![Result Screen 1](images/result-1.png)
+![Result Screen 2](images/result-2.png)
 
 ---
 
