@@ -1,7 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="8327ff6a-3dfc-4f4c-b101-4d7207e77a13" name="Changes" comment="" />
+    <list default="true" id="8327ff6a-3dfc-4f4c-b101-4d7207e77a13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/App/AppDelegate.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/App/LaughingDropsApp.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/AppConfig.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/AccentColor.colorset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/AppIcon.appiconset/1024.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/background.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/background.imageset/background.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/button.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/button.imageset/button.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/frame.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/frame.imageset/frame.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/glass.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/glass.imageset/glass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/internetBackground.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/internetBackground.imageset/internetBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/loadingBackground.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/loadingBackground.imageset/loadingBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/logo.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/logo.imageset/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/notificationBackground.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/notificationBackground.imageset/notificationBackground.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/notificationButton.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Assets.xcassets/notificationButton.imageset/notificationButton.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Game/MainTabView.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Preview Content/Preview Assets.xcassets/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Preview Content/Preview Assets.xcassets/LoadingView.dataset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Preview Content/Preview Assets.xcassets/LoadingView.dataset/LoadingView.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Services/AppsFlyerProvider.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Services/ConversionDataStore.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Services/FCMTokenStore.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Services/ServerAPI.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Utils/AppLogger.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Utils/LogStore.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Utils/OrientationLock.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/ViewModels/AppViewModel.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Views/ConsoleView.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Views/ContentView.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Views/FirstLaunchScreen.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Views/GameWindow.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Views/LoadingView.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Views/NoInternetScreen.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Views/WebViewScreen.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/Base/Views/WebWindow.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/BaseApp.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/BaseApp.xcodeproj/project.xcworkspace/contents.xcworkspacedata" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/BaseApp.xcodeproj/project.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/BaseApp.xcodeproj/xcshareddata/xcschemes/LaughingDrops.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/GoogleService-Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/notifications/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseApp/notifications/NotificationService.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,15 +87,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "d84042fd",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -45,6 +110,7 @@
       <updated>1770635626351</updated>
       <workItem from="1770635627648" duration="178000" />
       <workItem from="1770635810380" duration="159000" />
+      <workItem from="1770739463694" duration="4928000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
