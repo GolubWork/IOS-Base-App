@@ -3,6 +3,8 @@
 Это пошаговое руководство описывает, как добавлять новый функционал в BaseProject вручную: без использования ИИ и без обязательного использования командной строки (кроме установки зависимостей). Все шаги можно выполнить в Xcode и проводнике (Finder).
 
 ---
+1. Сделайте дубликат проекта и работайте в нем, либо создайте новую ветку в гите и запуште проект туда
+
 
 ## 1. Убедиться, что в проекте два таргета (основное приложение и Notification)
 
@@ -24,11 +26,15 @@
 ### Таргет BaseProject (основное приложение)
 
 1. В левой панели Xcode выберите таргет **BaseProject** (в секции TARGETS).
-2. Откройте вкладку **Signing & Capabilities**.
-3. Включите **Automatically manage signing**.
-4. В поле **Team** выберите вашу команду разработки (Apple Developer account).
-5. В поле **Bundle Identifier** укажите идентификатор приложения (например, `com.yourcompany.yourapp`).
+2. Откройте вкладку **General**
+3. В поле **Display Name** укажите отображаемое имя приложения
+4. В поле **Bundle Identifier** укажите идентификатор приложения
+5. Откройте вкладку **Signing & Capabilities**.
+6. Включите **Automatically manage signing**.
+7. В поле **Team** выберите вашу команду разработки (Apple Developer account).
+8. В поле **Bundle Identifier** укажите идентификатор приложения (например, `com.yourcompany.yourapp`).
 
+![Signing для таргета BaseProject: Team и Bundle Identifier](images/signing-baseproject-1.png)
 ![Signing для таргета BaseProject: Team и Bundle Identifier](images/signing-baseproject.png)
 
 ### Таргет notifications (расширение уведомлений)
@@ -61,11 +67,10 @@
 2. Один раз кликни по нему, затем ещё раз медленно кликни по имени (или нажми Enter) — имя станет редактируемым.
 3. Введи новое имя и нажми **Enter**.
 
-![Rename: Target](images/rename-target.png)
+### Переименование Sheme
 
-**Важно для Podfile:** в списке **TARGETS** порядок должен быть таким: **первый** — основное приложение (main app), **второй** — **notifications** (расширение уведомлений). Podfile автоматически подставляет в поды имя первого таргета (кроме notifications). Если notifications будет первым или порядок изменится, при `pod install` может возникнуть ошибка. При переименовании проекта не переименовывай таргет **notifications** в другое имя без правки Podfile (в нём указан вложенный таргет `notifications`).
+Дополнить
 
-![Target: Order](images/target-order.png)
 
 ### Синхронизация подов после переименования
 
@@ -73,7 +78,7 @@
 
 1. Закройте проект
 2. Откройте ваш проект `.xcodeproj` при помощи вашей IDE (не xcode)
-3. Замените поле ProjectVersion = XX на ProjectVersion = 77, сохраните, закройте
+3. Замените поле objectVersion = XX на objectVersion = 77, сохраните, закройте
 
 ![Pod Install-stage-1](images/install-stage-1.png)
 4. Откройте терминал и перейдите в **корень проекта** (папка, где лежат `Podfile`, `Podfile.lock` и `.xcodeproj`).
@@ -416,47 +421,69 @@ struct PasswordGeneratorView: View {
     }
 
     var body: some View {
-        ZStack {
-            Image("gameBackground")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea(.container, edges: .all)
-
+        ScrollView {
             VStack(spacing: 20) {
-                Text(viewModel.generatedPassword.isEmpty ? "Нажмите «Сгенерировать»" : viewModel.generatedPassword)
-                    .font(.system(.body, design: .monospaced))
-                    .textSelection(.enabled)
-                    .multilineTextAlignment(.center)
-                    .frame(maxWidth: .infinity)
+                    Text(viewModel.generatedPassword.isEmpty ? "Нажмите «Сгенерировать»" : viewModel.generatedPassword)
+                        .font(.system(.body, design: .monospaced))
+                        .textSelection(.enabled)
+                        .multilineTextAlignment(.center)
+                        .frame(maxWidth: .infinity)
 
-                TextField("Название", text: $viewModel.title)
-                    .textFieldStyle(.roundedBorder)
-                    .multilineTextAlignment(.center)
+                    TextField("Название", text: $viewModel.title)
+                        .textFieldStyle(.roundedBorder)
+                        .multilineTextAlignment(.center)
 
-                Text("Длина: \(Int(viewModel.length))")
-                    .font(.subheadline)
-                Slider(value: $viewModel.length, in: 4...32, step: 1)
-                    .padding(.horizontal)
+                    Text("Длина: \(Int(viewModel.length))")
+                        .font(.subheadline)
+                    Slider(value: $viewModel.length, in: 4...32, step: 1)
+                        .padding(.horizontal)
 
-                VStack(alignment: .leading, spacing: 8) {
-                    Toggle("С цифрами", isOn: $viewModel.useDigits)
-                    Toggle("С заглавными буквами", isOn: $viewModel.useUppercase)
-                    Toggle("С малыми буквами", isOn: $viewModel.useLowercase)
-                }
+                    VStack(alignment: .leading, spacing: 10) {
+                        CheckboxRow(title: "С цифрами", isOn: $viewModel.useDigits)
+                        CheckboxRow(title: "С заглавными буквами", isOn: $viewModel.useUppercase)
+                        CheckboxRow(title: "С малыми буквами", isOn: $viewModel.useLowercase)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
 
-                HStack(spacing: 12) {
-                    Button("Сгенерировать") { viewModel.generate() }
-                    Button("Сохранить") { Task { await viewModel.save() } }
-                }
+                    HStack(spacing: 12) {
+                        Button("Сгенерировать") { viewModel.generate() }
+                        Button("Сохранить") { Task { await viewModel.save() } }
+                    }
                 if let msg = viewModel.errorMessage {
                     Text(msg).foregroundStyle(.red).font(.caption)
                 }
             }
-            .padding()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(24)
+            .frame(maxWidth: .infinity)
+        }
+        .scrollIndicators(.hidden)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+}
+
+// MARK: - Checkbox row
+private struct CheckboxRow: View {
+    let title: String
+    @Binding var isOn: Bool
+
+    var body: some View {
+        HStack(alignment: .center, spacing: 12) {
+            Image(systemName: isOn ? "checkmark.square.fill" : "square")
+                .font(.system(size: 24, weight: .medium))
+                .foregroundStyle(isOn ? Color.accentColor : Color.primary)
+                .frame(width: 28, height: 28)
+            Text(title)
+                .font(.system(size: 17))
+                .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .frame(height: 44)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            isOn.toggle()
         }
     }
 }
+
 ```
 
 ```swift
@@ -471,39 +498,31 @@ struct PasswordListView: View {
     }
 
     var body: some View {
-        ZStack {
-            Image("gameBackground")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea(.container, edges: .all)
-
-            List(viewModel.passwords, id: \.id) { p in
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(p.title)
-                            .font(.headline)
-                        Text(p.value)
-                            .font(.system(.caption, design: .monospaced))
-                            .textSelection(.enabled)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                UIPasteboard.general.string = p.value
-                            }
-                    }
-                    Spacer()
-                    Button(role: .destructive) {
-                        Task { await viewModel.delete(id: p.id) }
-                    } label: {
-                        Image(systemName: "trash")
-                    }
+        List(viewModel.passwords, id: \.id) { p in
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(p.title)
+                        .font(.headline)
+                    Text(p.value)
+                        .font(.system(.caption, design: .monospaced))
+                        .textSelection(.enabled)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            UIPasteboard.general.string = p.value
+                        }
                 }
-                .listRowBackground(Color.clear)
+                Spacer()
+                Button(role: .destructive) {
+                    Task { await viewModel.delete(id: p.id) }
+                } label: {
+                    Image(systemName: "trash")
+                }
             }
-            .scrollContentBackground(.hidden)
-            .task { await viewModel.load() }
         }
+        .task { await viewModel.load() }
     }
 }
+
 ```
 
 ### Шаг 4.1. Функционал экрана Passwords: копирование и удаление
@@ -609,6 +628,21 @@ struct MainTabView: View {
 
 ![Result Screen 1](images/result-1.png)
 ![Result Screen 2](images/result-2.png)
+
+
+
+
+## Дебаг
+
+В Infrastructure -> Configuration -> AppConfiguration
+
+Есть параметры для дебага в том числе:
+1. isDebug: Bool = false,
+2. isGameOnly: Bool = true, -- Отображает только игровой режим
+3. isWebOnly: Bool = false, -- Отображает только WebView режим
+4. isNoNetwork: Bool = false, -- Отображает только экран No Network Connection
+5. isAskNotifications: Bool = false, -- Отображает только экран запроса уведомлений
+6. isInfinityLoading: Bool = false, -- Отображает только экран бесконечной загрузки
 
 ---
 

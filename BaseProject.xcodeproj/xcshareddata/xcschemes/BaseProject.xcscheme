@@ -16,15 +16,23 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C4251DD32EE193B600CD6F2C"
-<<<<<<<< HEAD:BaseProject.xcodeproj/xcshareddata/xcschemes/BaseApp.xcscheme
-               BuildableName = "BaseApp.app"
-               BlueprintName = "BaseApp"
-               ReferencedContainer = "container:BaseApp.xcodeproj">
-========
                BuildableName = "BaseProject.app"
                BlueprintName = "BaseProject"
                ReferencedContainer = "container:BaseProject.xcodeproj">
->>>>>>>> d1c3225 (fixes):BaseProject.xcodeproj/xcshareddata/xcschemes/BaseProject.xcscheme
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C4251F962EEC2FFD00CD6F2C"
+               BuildableName = "notifications.appex"
+               BlueprintName = "notifications"
+               ReferencedContainer = "container:BaseProject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,36 +43,9 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
       shouldAutocreateTestPlan = "YES">
-<<<<<<<< HEAD:BaseProject.xcodeproj/xcshareddata/xcschemes/BaseApp.xcscheme
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C4251DE32EE193BC00CD6F2C"
-               BuildableName = "BaseAppTests.xctest"
-               BlueprintName = "BaseAppTests"
-               ReferencedContainer = "container:BaseApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "C4251DED2EE193BC00CD6F2C"
-               BuildableName = "BaseAppUITests.xctest"
-               BlueprintName = "BaseAppUITests"
-               ReferencedContainer = "container:BaseApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
-========
->>>>>>>> d1c3225 (fixes):BaseProject.xcodeproj/xcshareddata/xcschemes/BaseProject.xcscheme
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -78,15 +59,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C4251DD32EE193B600CD6F2C"
-<<<<<<<< HEAD:BaseProject.xcodeproj/xcshareddata/xcschemes/BaseApp.xcscheme
-            BuildableName = "BaseApp.app"
-            BlueprintName = "BaseApp"
-            ReferencedContainer = "container:BaseApp.xcodeproj">
-========
             BuildableName = "BaseProject.app"
             BlueprintName = "BaseProject"
             ReferencedContainer = "container:BaseProject.xcodeproj">
->>>>>>>> d1c3225 (fixes):BaseProject.xcodeproj/xcshareddata/xcschemes/BaseProject.xcscheme
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -101,15 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C4251DD32EE193B600CD6F2C"
-<<<<<<<< HEAD:BaseProject.xcodeproj/xcshareddata/xcschemes/BaseApp.xcscheme
-            BuildableName = "BaseApp.app"
-            BlueprintName = "BaseApp"
-            ReferencedContainer = "container:BaseApp.xcodeproj">
-========
             BuildableName = "BaseProject.app"
             BlueprintName = "BaseProject"
             ReferencedContainer = "container:BaseProject.xcodeproj">
->>>>>>>> d1c3225 (fixes):BaseProject.xcodeproj/xcshareddata/xcschemes/BaseProject.xcscheme
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

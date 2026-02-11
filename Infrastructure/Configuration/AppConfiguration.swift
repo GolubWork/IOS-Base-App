@@ -58,12 +58,13 @@ final class AppConfiguration: AppConfigurationProtocol {
         noInternetMessage: String = "Please, check your internet connection and restart",
         notificationSubtitle: String = "Allow notifications about bonuses and promos",
         notificationDescription: String = "Stay tuned with best offers from our casino",
+        
         isDebug: Bool = false,
-        isGameOnly: Bool = true,
+        isGameOnly: Bool = false,
         isWebOnly: Bool = false,
         isNoNetwork: Bool = false,
         isAskNotifications: Bool = false,
-        isInfinityLoading: Bool = false,
+        isInfinityLoading: Bool = true,
         bundle: Bundle = .main
     ) {
         let info = bundle.infoDictionary ?? [:]
