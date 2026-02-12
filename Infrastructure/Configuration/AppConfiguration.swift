@@ -42,10 +42,10 @@ final class AppConfiguration: AppConfigurationProtocol {
 
     // MARK: - Defaults (fallback when not in Bundle/xcconfig)
 
-    private static let defaultServerURL = "https://laughingdropspop.com/config.php"
-    private static let defaultStoreId = "6756708872"
-    private static let defaultFirebaseProjectId = "662865312172"
-    private static let defaultAppsFlyerDevKey = "zjmEk65LDPa3K8s4BWnpfA"
+    private static let defaultServerURL = ""
+    private static let defaultStoreId = ""
+    private static let defaultFirebaseProjectId = ""
+    private static let defaultAppsFlyerDevKey = ""
 
     // MARK: - Initialization
 
@@ -64,7 +64,7 @@ final class AppConfiguration: AppConfigurationProtocol {
         isWebOnly: Bool = false,
         isNoNetwork: Bool = false,
         isAskNotifications: Bool = false,
-        isInfinityLoading: Bool = true,
+        isInfinityLoading: Bool = false,
         bundle: Bundle = .main
     ) {
         let info = bundle.infoDictionary ?? [:]

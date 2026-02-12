@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C4251E072EE194B000CD6F2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4251E062EE194B000CD6F2C /* GoogleService-Info.plist */; };
+		C4251E092EE194B100CD6F2C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4251E082EE194B100CD6F2C /* AppTrackingTransparency.framework */; };
 		C4251F9E2EEC2FFD00CD6F2C /* notifications.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C4251F972EEC2FFD00CD6F2C /* notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		C4251DD42EE193B600CD6F2C /* BaseProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4251E082EE194B100CD6F2C /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		C4251E062EE194B000CD6F2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4251F972EEC2FFD00CD6F2C /* notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E1E0012EE193BC00CD6F2C /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C4251E092EE194B100CD6F2C /* AppTrackingTransparency.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

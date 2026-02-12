@@ -1,18 +1,5 @@
 import Foundation
 
-/// Payload keys used when building server request (aligned with backend expectations).
-private enum PayloadKey {
-    static let allKeys: [String] = [
-        "adset", "af_adset", "adgroup", "campaign_id", "af_status", "agency",
-        "af_sub3", "af_siteid", "adset_id", "is_fb", "is_first_launch",
-        "click_time", "iscache", "ad_id", "af_sub1", "campaign", "is_paid",
-        "af_sub4", "adgroup_id", "is_mobile_data_terms_signed", "af_channel",
-        "af_sub5", "media_source", "install_time", "af_sub2", "deep_link_sub1",
-        "deep_link_value", "af_id", "bundle_id", "os", "store_id", "locale",
-        "firebase_project_id", "push_token"
-    ]
-}
-
 /// Use case: run app initialization (config checks, conversion data, server request, state resolution).
 /// Conforms to AppInitializerUseCaseProtocol from AppInitialization feature.
 final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
@@ -96,25 +83,28 @@ final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
         afId: String,
         pushToken: String
     ) -> [String: Any] {
-        let bundleId = Bundle.main.bundleIdentifier ?? "unknown.bundle"
-        let locale = Locale.current.identifier
-
+        // Copy all key/value pairs from conversion data (string keys only) to support arbitrary payload keys.
         var payload: [String: Any] = [:]
-        for key in PayloadKey.allKeys {
-            switch key {
-            case "af_id": payload[key] = afId
-            case "bundle_id": payload[key] = bundleId
-            case "os": payload[key] = configuration.os
-            case "store_id": payload[key] = configuration.storeIdWithPrefix
-            case "locale": payload[key] = locale
-            case "firebase_project_id": payload[key] = configuration.firebaseProjectId
-            case "push_token": payload[key] = pushToken
-            case "af_status":
-                payload[key] = conversionData[key] ?? "Organic"
-            default:
-                payload[key] = conversionData[key] ?? ""
+        for (key, value) in conversionData {
+            if let stringKey = key as? String {
+                payload[stringKey] = value
             }
         }
+
+        // Inject/override known technical keys so they always reflect current config and params.
+        let bundleId = Bundle.main.bundleIdentifier ?? "unknown.bundle"
+        let locale = Locale.current.identifier
+        payload["af_id"] = afId
+        payload["bundle_id"] = bundleId
+        payload["os"] = configuration.os
+        payload["store_id"] = configuration.storeIdWithPrefix
+        payload["locale"] = locale
+        payload["firebase_project_id"] = configuration.firebaseProjectId
+        payload["push_token"] = pushToken
+        if payload["af_status"] == nil {
+            payload["af_status"] = "Organic"
+        }
+
         return payload
     }
 }

@@ -64,6 +64,7 @@
       <workItem from="1770635810380" duration="159000" />
       <workItem from="1770739463694" duration="4928000" />
       <workItem from="1770763609577" duration="2648000" />
+      <workItem from="1770772996511" duration="98000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -89,7 +90,15 @@
       <option name="project" value="LOCAL" />
       <updated>1770772666010</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="removed unnessesary readme">
+      <option name="closed" value="true" />
+      <created>1770773039941</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1770773039941</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -112,6 +121,7 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="init" />
     <MESSAGE value="alpha_base" />
-    <option name="LAST_COMMIT_MESSAGE" value="alpha_base" />
+    <MESSAGE value="removed unnessesary readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed unnessesary readme" />
   </component>
 </project>

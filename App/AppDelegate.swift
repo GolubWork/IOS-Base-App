@@ -1,5 +1,6 @@
 import UIKit
 import AppsFlyerLib
+import AppTrackingTransparency
 import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
@@ -14,6 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
 
     /// Dependency container created at launch. Set in didFinishLaunching; BaseProject reads it and injects into views.
     private(set) var container: DependencyContainer!
+
 
     /// Performs application startup configuration including Firebase setup,
     /// push notification registration, and AppsFlyer initialization.
@@ -40,9 +42,21 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         return true
     }
 
-    /// Notifies AppsFlyer when the application becomes active.
+    /// Notifies AppsFlyer when the application becomes active; requests ATT only when status is not yet determined (system shows the prompt once).
     func applicationDidBecomeActive(_ application: UIApplication) {
         AppsFlyerLib.shared().start()
+        requestTrackingAuthorizationIfNeeded()
+    }
+
+    /// Shows the system App Tracking Transparency prompt only when the user has not been asked yet (.notDetermined). After that, the system never shows it again.
+    private func requestTrackingAuthorizationIfNeeded() {
+        guard #available(iOS 14, *) else { return }
+        guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            ATTrackingManager.requestTrackingAuthorization { _ in
+                self?.container?.logger.log("ATT authorization request completed")
+            }
+        }
     }
 
     /// Receives APNS device token, registers it with Firebase Messaging,

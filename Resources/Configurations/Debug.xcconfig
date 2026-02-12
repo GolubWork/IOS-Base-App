@@ -10,3 +10,6 @@ INFOPLIST_KEY_SERVER_URL = $(SERVER_URL)
 INFOPLIST_KEY_STORE_ID = $(STORE_ID)
 INFOPLIST_KEY_FIREBASE_PROJECT_ID = $(FIREBASE_PROJECT_ID)
 INFOPLIST_KEY_APPSFLYER_DEV_KEY = $(APPSFLYER_DEV_KEY)
+
+// Required for App Tracking Transparency (ATT) system prompt
+INFOPLIST_KEY_NSUserTrackingUsageDescription = "This allows us to measure and improve your experience and app performance."
