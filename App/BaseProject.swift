@@ -19,6 +19,7 @@ private final class AppViewModelHolder: ObservableObject {
 @MainActor
 struct BaseProject: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @Environment(\.scenePhase) private var scenePhase
     @StateObject private var holder: AppViewModelHolder
 
     init() {
@@ -32,7 +33,14 @@ struct BaseProject: App {
             RootView()
                 .environment(\.dependencyContainer, container)
                 .environmentObject(holder.viewModel)
-                .onAppear { holder.viewModel.start() }
+                .onAppear {
+                    holder.viewModel.start()
+                    appDelegate.triggerTrackingAuthorizationFlowIfNeeded()
+                }
+                .onChange(of: scenePhase) { newPhase in
+                    guard newPhase == .active else { return }
+                    appDelegate.triggerTrackingAuthorizationFlowIfNeeded()
+                }
         }
     }
 }

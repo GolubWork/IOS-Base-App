@@ -15,6 +15,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
 
     /// Dependency container created at launch. Set in didFinishLaunching; BaseProject reads it and injects into views.
     private(set) var container: DependencyContainer!
+    private var hasStartedAppsFlyer = false
 
 
     /// Performs application startup configuration including Firebase setup,
@@ -37,26 +38,45 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         appsFlyer.delegate = container.analyticsRepository as? AppsFlyerLibDelegate
         appsFlyer.isDebug = container.configuration.isDebug
 
-        appsFlyer.start()
-
         return true
     }
 
     /// Notifies AppsFlyer when the application becomes active; requests ATT only when status is not yet determined (system shows the prompt once).
     func applicationDidBecomeActive(_ application: UIApplication) {
-        AppsFlyerLib.shared().start()
-        requestTrackingAuthorizationIfNeeded()
+        triggerTrackingAuthorizationFlowIfNeeded()
     }
 
-    /// Shows the system App Tracking Transparency prompt only when the user has not been asked yet (.notDetermined). After that, the system never shows it again.
-    private func requestTrackingAuthorizationIfNeeded() {
-        guard #available(iOS 14, *) else { return }
-        guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else { return }
+    /// Public bridge for SwiftUI scene lifecycle to ensure the ATT/startup flow runs on app launch in scene-based environments.
+    func triggerTrackingAuthorizationFlowIfNeeded() {
+        requestTrackingAuthorizationIfNeededAndStartAppsFlyer()
+    }
+
+    /// Starts AppsFlyer once per launch and, on iOS 14+, requests ATT first when status is not determined.
+    private func requestTrackingAuthorizationIfNeededAndStartAppsFlyer() {
+        guard !hasStartedAppsFlyer else { return }
+        guard #available(iOS 14, *) else {
+            startAppsFlyerIfNeeded()
+            return
+        }
+
+        guard ATTrackingManager.trackingAuthorizationStatus == .notDetermined else {
+            startAppsFlyerIfNeeded()
+            return
+        }
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             ATTrackingManager.requestTrackingAuthorization { _ in
                 self?.container?.logger.log("ATT authorization request completed")
+                self?.startAppsFlyerIfNeeded()
             }
         }
+    }
+
+    /// Ensures AppsFlyer starts once even if app becomes active multiple times quickly.
+    private func startAppsFlyerIfNeeded() {
+        guard !hasStartedAppsFlyer else { return }
+        hasStartedAppsFlyer = true
+        AppsFlyerLib.shared().start()
     }
 
     /// Receives APNS device token, registers it with Firebase Messaging,
