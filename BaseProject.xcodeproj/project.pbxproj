@@ -20,6 +20,13 @@
 			remoteGlobalIDString = C4251F962EEC2FFD00CD6F2C;
 			remoteInfo = notifications;
 		};
+		D4251E262EE193BC00CD6F2C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C4251DCC2EE193B600CD6F2C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C4251DD32EE193B600CD6F2C;
+			remoteInfo = BaseProject;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,9 +45,12 @@
 
 /* Begin PBXFileReference section */
 		C4251DD42EE193B600CD6F2C /* BaseProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4251E082EE194B100CD6F2C /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		C4251E062EE194B000CD6F2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C4251E082EE194B100CD6F2C /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		C4251F972EEC2FFD00CD6F2C /* notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C42A3CE42F758FC300422E43 /* BaseProject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BaseProject-Info.plist"; sourceTree = "<group>"; };
+		C42A3CE52F758FDA00422E43 /* BaseProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BaseProject.entitlements; sourceTree = "<group>"; };
+		D4251E212EE193BC00CD6F2C /* BaseProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BaseProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1E1E0012EE193BC00CD6F2C /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
 		E1E1E0022EE193BC00CD6F2C /* Staging.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Staging.xcconfig; sourceTree = "<group>"; };
 		E1E1E0032EE193BC00CD6F2C /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
@@ -63,6 +73,7 @@
 		C4251E132EE1A00000CD6F2C /* App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = App; sourceTree = "<group>"; };
 		C4251E142EE1A00000CD6F2C /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
 		C4251F982EEC2FFD00CD6F2C /* notifications */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (C4251FA22EEC2FFD00CD6F2C /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = notifications; sourceTree = "<group>"; };
+		D4251E1F2EE193BC00CD6F2C /* Tests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Tests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,21 +92,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4251E232EE193BC00CD6F2C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		C4251DCB2EE193B600CD6F2C = {
 			isa = PBXGroup;
 			children = (
+				C42A3CE52F758FDA00422E43 /* BaseProject.entitlements */,
+				C42A3CE42F758FC300422E43 /* BaseProject-Info.plist */,
 				C4251E102EE1A00000CD6F2C /* Core */,
 				C4251E112EE1A00000CD6F2C /* Features */,
 				C4251E122EE1A00000CD6F2C /* Infrastructure */,
 				C4251E132EE1A00000CD6F2C /* App */,
 				C4251E142EE1A00000CD6F2C /* Resources */,
+				D4251E1F2EE193BC00CD6F2C /* Tests */,
 				E1E1E0042EE193BC00CD6F2C /* Resources/Configurations */,
 				C4251F982EEC2FFD00CD6F2C /* notifications */,
 				C4251DD52EE193B600CD6F2C /* Products */,
 				C4251E062EE194B000CD6F2C /* GoogleService-Info.plist */,
+				C42A3C552F758F7F00422E43 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,9 +125,18 @@
 			isa = PBXGroup;
 			children = (
 				C4251DD42EE193B600CD6F2C /* BaseProject.app */,
+				D4251E212EE193BC00CD6F2C /* BaseProjectTests.xctest */,
 				C4251F972EEC2FFD00CD6F2C /* notifications.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C42A3C552F758F7F00422E43 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C4251E082EE194B100CD6F2C /* AppTrackingTransparency.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		E1E1E0042EE193BC00CD6F2C /* Resources/Configurations */ = {
@@ -172,6 +203,27 @@
 			productReference = C4251F972EEC2FFD00CD6F2C /* notifications.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		D4251E202EE193BC00CD6F2C /* BaseProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4251E272EE193BC00CD6F2C /* Build configuration list for PBXNativeTarget "BaseProjectTests" */;
+			buildPhases = (
+				D4251E222EE193BC00CD6F2C /* Sources */,
+				D4251E232EE193BC00CD6F2C /* Frameworks */,
+				D4251E242EE193BC00CD6F2C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D4251E252EE193BC00CD6F2C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D4251E1F2EE193BC00CD6F2C /* Tests */,
+			);
+			name = BaseProjectTests;
+			productName = BaseProjectTests;
+			productReference = D4251E212EE193BC00CD6F2C /* BaseProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -187,6 +239,10 @@
 					};
 					C4251F962EEC2FFD00CD6F2C = {
 						CreatedOnToolsVersion = 16.1;
+					};
+					D4251E202EE193BC00CD6F2C = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = C4251DD32EE193B600CD6F2C;
 					};
 				};
 			};
@@ -205,6 +261,7 @@
 			projectRoot = "";
 			targets = (
 				C4251DD32EE193B600CD6F2C /* BaseProject */,
+				D4251E202EE193BC00CD6F2C /* BaseProjectTests */,
 				C4251F962EEC2FFD00CD6F2C /* notifications */,
 			);
 		};
@@ -220,6 +277,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C4251F952EEC2FFD00CD6F2C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4251E242EE193BC00CD6F2C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -335,6 +399,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D4251E222EE193BC00CD6F2C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -342,6 +413,11 @@
 			isa = PBXTargetDependency;
 			target = C4251F962EEC2FFD00CD6F2C /* notifications */;
 			targetProxy = C4251F9C2EEC2FFD00CD6F2C /* PBXContainerItemProxy */;
+		};
+		D4251E252EE193BC00CD6F2C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C4251DD32EE193B600CD6F2C /* BaseProject */;
+			targetProxy = D4251E262EE193BC00CD6F2C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -472,6 +548,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BaseProject.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -479,8 +556,10 @@
 				DEVELOPMENT_TEAM = 9C2WB6M3U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BaseProject-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = BaseProject;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"This allows us to measure and improve your experience and app performance.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -504,6 +583,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BaseProject.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -511,8 +591,10 @@
 				DEVELOPMENT_TEAM = 9C2WB6M3U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BaseProject-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = BaseProject;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"This allows us to measure and improve your experience and app performance.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -598,6 +680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = BaseProject.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -605,8 +688,10 @@
 				DEVELOPMENT_TEAM = 9C2WB6M3U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "BaseProject-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = BaseProject;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"This allows us to measure and improve your experience and app performance.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -628,6 +713,7 @@
 		C4251FA02EEC2FFD00CD6F2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = notifications/notifications.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -655,6 +741,7 @@
 		C4251FA12EEC2FFD00CD6F2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = notifications/notifications.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -682,6 +769,7 @@
 		C4251FA42EEC2FFD00CD6F2C /* Staging */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = notifications/notifications.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -703,6 +791,66 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Staging;
+		};
+		D4251E282EE193BC00CD6F2C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9C2WB6M3U5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.med.tests.BaseProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaseProject.app/BaseProject";
+			};
+			name = Debug;
+		};
+		D4251E292EE193BC00CD6F2C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9C2WB6M3U5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.med.tests.BaseProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaseProject.app/BaseProject";
+			};
+			name = Release;
+		};
+		D4251E2A2EE193BC00CD6F2C /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 9C2WB6M3U5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.med.tests.BaseProjectTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BaseProject.app/BaseProject";
 			};
 			name = Staging;
 		};
@@ -735,6 +883,16 @@
 				C4251FA02EEC2FFD00CD6F2C /* Debug */,
 				C4251FA12EEC2FFD00CD6F2C /* Release */,
 				C4251FA42EEC2FFD00CD6F2C /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4251E272EE193BC00CD6F2C /* Build configuration list for PBXNativeTarget "BaseProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4251E282EE193BC00CD6F2C /* Debug */,
+				D4251E292EE193BC00CD6F2C /* Release */,
+				D4251E2A2EE193BC00CD6F2C /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

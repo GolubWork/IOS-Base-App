@@ -8,6 +8,6 @@ protocol NetworkRepositoryProtocol: AnyObject {
     /// - Parameters:
     ///   - payload: Full request body (conversion data + device/config fields).
     ///   - timeout: Request timeout in seconds.
-    /// - Returns: URL string if server returns success and a non-empty url, nil otherwise.
-    func fetchWebURL(usingPayload payload: [AnyHashable: Any], timeout: TimeInterval) async throws -> String?
+    /// - Returns: Parsed config result (`url` + optional `expires`) from backend response.
+    func fetchConfig(usingPayload payload: [AnyHashable: Any], timeout: TimeInterval) async throws -> ConfigFetchResult
 }

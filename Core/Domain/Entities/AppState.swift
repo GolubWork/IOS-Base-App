@@ -4,8 +4,10 @@ import Foundation
 enum AppState: Equatable {
     /// Initial loading state while attribution and config are being resolved.
     case loading
-    /// User should see the game (main content).
-    case game
+    /// Native app shell (template main content; extend in the host app).
+    case native
+    /// Diagnostic startup screen with stage-by-stage status and details.
+    case testState(StartupDiagnostics)
     /// User should see WebView with the given URL.
     case web(URL)
     /// First launch flow with optional URL for post-onboarding.

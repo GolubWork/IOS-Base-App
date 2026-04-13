@@ -3,6 +3,8 @@ import Foundation
 /// Protocol for app initialization use case. Used by AppViewModel and DI.
 /// Feature contract: run startup flow and resolve target app state.
 protocol AppInitializerUseCaseProtocol: AnyObject {
+    /// Latest startup diagnostics captured during the last `execute` call.
+    var latestDiagnostics: StartupDiagnostics { get }
 
     /// Runs the full startup flow and returns the target app state.
     /// - Parameters:

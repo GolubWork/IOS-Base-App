@@ -4,8 +4,7 @@ import Foundation
 /// Allows waiting for data with timeout and swapping implementations for tests.
 protocol ConversionDataRepositoryProtocol: AnyObject {
 
-    /// Returns conversion data when available, or after timeout expires.
-    /// - Parameter timeout: Maximum time to wait in seconds.
-    /// - Returns: Conversion data dictionary; may be empty if timeout reached.
-    func getConversionData(timeout: TimeInterval) async -> [AnyHashable: Any]
+    /// Returns conversion data when it becomes available.
+    /// - Returns: Conversion data dictionary.
+    func getConversionData() async -> [AnyHashable: Any]
 }

@@ -22,4 +22,5 @@ protocol AppConfigurationProtocol: AnyObject {
     var isNoNetwork: Bool { get }
     var isAskNotifications: Bool { get }
     var isInfinityLoading: Bool { get }
+    var isForceOpenTestState: Bool { get }
 }

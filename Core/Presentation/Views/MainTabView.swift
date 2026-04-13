@@ -1,16 +1,22 @@
 import SwiftUI
+import UIKit
 
-/// Main view shown in game mode. Placeholder for your content.
-/// Game background is drawn inside this view (and in each tab screen when you add tabs).
+/// Main native shell placeholder. Extend with your tabs and content in the host app.
+/// Optional `gameBackground` asset: if missing, uses a system background.
 struct MainTabView: View {
     var body: some View {
         ZStack {
-            Image("gameBackground")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea(.container, edges: .all)
+            if UIImage(named: "gameBackground") != nil {
+                Image("gameBackground")
+                    .resizable()
+                    .scaledToFill()
+                    .ignoresSafeArea(.container, edges: .all)
+            } else {
+                Color(.systemGroupedBackground)
+                    .ignoresSafeArea()
+            }
 
-            Text("Game Mode")
+            Text("Native shell")
                 .font(.title)
                 .foregroundColor(.secondary)
         }

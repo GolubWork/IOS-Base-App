@@ -23,26 +23,40 @@ enum AppDependencies {
         let buildConfig = BuildConfiguration.current
         let configuration = AppConfiguration(isDebug: buildConfig.isDebug)
         let logStorage = LogStore()
-        let logger = DefaultLogger(storage: logStorage)
+        let logger = DefaultLogger(storage: logStorage, isEnabled: configuration.isDebug)
         let conversionDataLocalDataSource = ConversionDataLocalDataSource(logger: logger)
         let fcmTokenLocalDataSource = FCMTokenLocalDataSource()
+        let startupStateStore = StartupStateStore()
         let analyticsRepository = AppsFlyerRepository(conversionDataSink: conversionDataLocalDataSource, logger: logger)
         let networkRepository = ServerAPIRepository(configuration: configuration, logger: logger)
-        let conversionDataRepository = ConversionDataRepository(conversionDataSource: conversionDataLocalDataSource)
+        let networkConnectivityChecker = NWPathNetworkConnectivityChecker()
+        let conversionDataRepository = ConversionDataRepository(
+            conversionDataSource: conversionDataLocalDataSource,
+            logger: logger
+        )
         let fetchConversionDataUseCase = FetchConversionDataUseCase(conversionDataRepository: conversionDataRepository)
         let initializeAppUseCase = InitializeAppUseCase(
             configuration: configuration,
             fetchConversionDataUseCase: fetchConversionDataUseCase,
             analyticsRepository: analyticsRepository,
-            networkRepository: networkRepository
+            networkRepository: networkRepository,
+            networkConnectivityChecker: networkConnectivityChecker,
+            fcmTokenDataSource: fcmTokenLocalDataSource,
+            startupStateStore: startupStateStore,
+            logger: logger
         )
-        let pushTokenProvider = FCMTokenProvider(fcmTokenDataSource: fcmTokenLocalDataSource)
+        let pushTokenProvider = FCMTokenProvider(
+            fcmTokenDataSource: fcmTokenLocalDataSource,
+            logger: logger
+        )
         return DefaultDependencyContainer(
             configuration: configuration,
             analyticsRepository: analyticsRepository,
             networkRepository: networkRepository,
+            networkConnectivityChecker: networkConnectivityChecker,
             conversionDataRepository: conversionDataRepository,
             fcmTokenDataSource: fcmTokenLocalDataSource,
+            startupStateStore: startupStateStore,
             initializeAppUseCase: initializeAppUseCase,
             pushTokenProvider: pushTokenProvider,
             logger: logger,

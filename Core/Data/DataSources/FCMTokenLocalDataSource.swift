@@ -7,5 +7,13 @@ final class FCMTokenLocalDataSource: FCMTokenDataSourceProtocol {
     /// Current FCM token.
     var token: String?
 
+    var apnsStatus: String = "pending"
+
+    var apnsErrorDescription: String?
+
+    var isRegisteredForRemoteNotifications: Bool = false
+
+    var notificationAuthorizationStatus: String = "notDetermined"
+
     init() {}
 }

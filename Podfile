@@ -25,6 +25,10 @@ abstract_target 'PodsShared' do
   target MAIN_TARGET do
   end
 
+  target 'BaseProjectTests' do
+    inherit! :search_paths
+  end
+
   target 'notifications' do
   end
 end
