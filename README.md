@@ -37,7 +37,7 @@ bundle exec pod install
 
 Открыть **`BaseProject.xcworkspace`** (не `.xcodeproj`; workspace создаётся после `pod install`). Добавить `GoogleService-Info.plist` в корень проекта при использовании Firebase.
 
-Конфигурация сборки: в `Resources/Configurations/` (Debug, Staging, Release).
+Стартовые URL и ключи (сервер, магазин, Firebase, AppsFlyer и feature flags): `Infrastructure/Configuration/StartupDefaultsConfiguration.swift`. Схемы сборки: Debug, Staging, Release (см. `BuildConfiguration`).
 
 ## Запуск
 

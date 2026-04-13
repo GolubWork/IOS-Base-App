@@ -1,4 +1,0 @@
-#include "../../Pods/Target Support Files/Pods-PodsShared-BaseProject/Pods-PodsShared-BaseProject.debug.xcconfig"
-#include "CommonRuntime.xcconfig"
-// Debug configuration: runtime plist IS_DEBUG (true/false or YES/NO strings — see AppConfiguration).
-IS_DEBUG = YES

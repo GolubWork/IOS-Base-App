@@ -12,6 +12,7 @@ final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
     private let fcmTokenDataSource: FCMTokenDataSourceProtocol
     private let startupStateStore: StartupStateStoreProtocol
     private let logger: Logging
+    private let atsHostRegistrar: AppTransportSecurityHostRegistrarProtocol
     private let organicRefreshDelayNanoseconds: UInt64
     private let preRequestWaitTimeoutNanoseconds: UInt64
     private let preRequestPollIntervalNanoseconds: UInt64
@@ -26,6 +27,7 @@ final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
         fcmTokenDataSource: FCMTokenDataSourceProtocol,
         startupStateStore: StartupStateStoreProtocol,
         logger: Logging,
+        atsHostRegistrar: AppTransportSecurityHostRegistrarProtocol,
         organicRefreshDelay: TimeInterval = 5.0,
         preRequestWaitTimeout: TimeInterval = 15.0,
         preRequestPollInterval: TimeInterval = 0.5
@@ -38,6 +40,7 @@ final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
         self.fcmTokenDataSource = fcmTokenDataSource
         self.startupStateStore = startupStateStore
         self.logger = logger
+        self.atsHostRegistrar = atsHostRegistrar
         self.organicRefreshDelayNanoseconds = max(0, UInt64(organicRefreshDelay * 1_000_000_000))
         self.preRequestWaitTimeoutNanoseconds = max(0, UInt64(preRequestWaitTimeout * 1_000_000_000))
         self.preRequestPollIntervalNanoseconds = max(1_000_000, UInt64(preRequestPollInterval * 1_000_000_000))
@@ -345,6 +348,7 @@ final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
                     "url": urlString ?? NSNull(),
                     "parsed_url": urlFromServer?.absoluteString ?? NSNull()
                 ]
+                await registerConfigHosts(webURL: urlFromServer, expiresAt: configResult.expiresAt)
                 if let url = urlFromServer {
                     startupStateStore.mode = .web
                     if hasLaunchedBefore {
@@ -367,6 +371,10 @@ final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
                     level: .error
                 )
                 if let fallbackURL = resolvedCachedWebURL() {
+                    await registerConfigHosts(
+                        webURL: fallbackURL,
+                        expiresAt: startupStateStore.cachedWebConfig?.expiresAt
+                    )
                     logger.log("InitializeAppUseCase: app state -> web (webOnly cached fallback)")
                     return finish(.web(fallbackURL), finalSummary: "Final state resolved.")
                 } else {
@@ -402,6 +410,7 @@ final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
             if urlString != nil && urlFromServer == nil {
                 logger.log("InitializeAppUseCase: server URL string is invalid for URL initialization", level: .error)
             }
+            await registerConfigHosts(webURL: urlFromServer, expiresAt: configResult.expiresAt)
 
             let shouldShowAskNotificationsRepeat = AskNotificationsRepeatState.shouldShowRepeat()
             if shouldShowAskNotificationsRepeat {
@@ -461,12 +470,26 @@ final class InitializeAppUseCase: AppInitializerUseCaseProtocol {
             ]
             if let fallbackURL = resolvedCachedWebURL() {
                 startupStateStore.mode = .web
+                await registerConfigHosts(
+                    webURL: fallbackURL,
+                    expiresAt: startupStateStore.cachedWebConfig?.expiresAt
+                )
                 logger.log("InitializeAppUseCase: app state -> web (cached URL fallback)")
                 return finish(.web(fallbackURL), finalSummary: "Final state resolved.")
             }
             startupStateStore.mode = .native
             return finish(.native, finalSummary: "Final state resolved.")
         }
+    }
+
+    private func registerConfigHosts(webURL: URL?, expiresAt: Date?) async {
+        let trimmed = configuration.serverURL.trimmingCharacters(in: .whitespacesAndNewlines)
+        let configRequestURL = trimmed.isEmpty ? nil : URL(string: trimmed)
+        await atsHostRegistrar.registerHostsFromConfigResponse(
+            webURL: webURL,
+            configRequestURL: configRequestURL,
+            expiresAt: expiresAt
+        )
     }
 
     private func buildPayload(

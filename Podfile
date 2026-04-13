@@ -25,10 +25,6 @@ abstract_target 'PodsShared' do
   target MAIN_TARGET do
   end
 
-  target 'BaseProjectTests' do
-    inherit! :search_paths
-  end
-
   target 'notifications' do
   end
 end
@@ -52,25 +48,5 @@ post_install do |installer|
   # Disable parallel builds for Pods project to fix "Multiple commands produce" error
   installer.pods_project.build_configurations.each do |config|
     config.build_settings['DISABLE_MANUAL_TARGET_ORDER_BUILD_WARNING'] = 'YES'
-  end
-
-  # CocoaPods may point the app target base config at Pods-*.xcconfig only; that drops
-  # Resources/Configurations (IS_DEBUG, TEST_STATE_FORCE_OPEN, etc.). Restore project xcconfigs.
-  project = Xcodeproj::Project.open(xcodeproj_path)
-  app_target = project.targets.find { |t| t.name == MAIN_TARGET }
-  if app_target
-    cfg_group = project.main_group.recursive_children.grep(Xcodeproj::Project::Object::PBXGroup).find do |g|
-      g.path == 'Resources/Configurations'
-    end
-    if cfg_group
-      mapping = { 'Debug' => 'Debug.xcconfig', 'Release' => 'Release.xcconfig', 'Staging' => 'Staging.xcconfig' }
-      app_target.build_configurations.each do |bc|
-        fname = mapping[bc.name]
-        next unless fname
-        ref = cfg_group.files.find { |f| f.path == fname }
-        bc.base_configuration_reference = ref if ref
-      end
-      project.save
-    end
   end
 end

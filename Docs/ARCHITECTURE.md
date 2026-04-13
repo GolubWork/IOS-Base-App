@@ -190,7 +190,7 @@ Features/
     Data/               # Реализации фичи
     Presentation/       # UI фичи (если есть)
 Infrastructure/         # Configuration, DI, Logging, сквозные вещи
-Resources/              # Assets, xcconfig, Preview Content
+Resources/              # Assets, Preview Content
 Docs/                   # Документация по архитектуре и дизайну
 ```
 

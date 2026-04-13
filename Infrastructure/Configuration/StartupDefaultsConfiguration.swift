@@ -1,7 +1,7 @@
 import Foundation
 
-/// Centralized startup defaults for runtime configuration.
-/// Keep production values out of source control and inject them via xcconfig/Info.plist.
+/// Centralized startup defaults for runtime configuration (URLs, store/API identifiers, feature flags).
+/// Edit these values per app clone; `AppConfiguration` uses them when Bundle/Info.plist keys are absent.
 enum StartupDefaultsConfiguration {
     /// Example: "https://example.com/config.php"
     static let serverURL = ""

@@ -12,7 +12,7 @@ This document contains rules and context for AI assistants (e.g. ChatGPT, Cursor
 - **Minimum iOS:** 16.0 (see Podfile).
 - **Dependencies:** CocoaPods (AppsFlyer, Firebase Core/Messaging/RemoteConfig). Use `bundle exec pod install` from project root.
 - **Targets:** Two targets — main app (first in TARGETS, name can be renamed from BaseProject) and **notifications** (Notification Service Extension). Both share the same Pods; Podfile resolves main target by name dynamically.
-- **Build configs:** Debug, Staging, Release (see `BuildConfiguration.current` and xcconfig in `Resources/Configurations/`).
+- **Build configs:** Debug, Staging, Release (see `BuildConfiguration.current` and Xcode schemes).
 
 ---
 
@@ -73,7 +73,6 @@ Infrastructure/
   OrientationLock.swift
 Resources/
   Assets.xcassets/
-  Configurations/             # Debug.xcconfig, Staging.xcconfig, Release.xcconfig
   Preview Content/
 Docs/                         # ARCHITECTURE.md, EXTENDING.md, GPTRULES.md, TROUBLESHOOTING.md
 ```
@@ -87,7 +86,7 @@ Docs/                         # ARCHITECTURE.md, EXTENDING.md, GPTRULES.md, TROU
 | Repository **implementation**, API/DB| `Features/<Feature>/Data/` or `Core/Data/` |
 | ViewModel, SwiftUI screen             | `Features/<Feature>/Presentation/` or `Core/Presentation/` |
 | DI registration                       | `Infrastructure/DI/DependencyContainer.swift` and `App/AppDependencies.swift` |
-| Config keys, URLs, feature flags      | `Infrastructure/Configuration/`, xcconfig in `Resources/Configurations/` |
+| Config keys, URLs, feature flags      | `Infrastructure/Configuration/` (`StartupDefaultsConfiguration`, `AppConfiguration`) |
 
 New Swift files must be added to the **BaseProject** (main app) target in Xcode; add to **notifications** target only if that extension needs them.
 
@@ -113,16 +112,16 @@ New Swift files must be added to the **BaseProject** (main app) target in Xcode;
 - **Entry:** `@main struct BaseProject: App` with `@UIApplicationDelegateAdaptor(AppDelegate.self)`. AppDelegate creates the container in `didFinishLaunching` and assigns it to `AppDependencies.setLaunchContainer(_:)`; BaseProject reads `AppDependencies.launchContainer` to build `AppViewModelHolder`, which holds the container and creates `AppViewModel`.
 - **Root UI:** `RootView` is the root. It uses `@EnvironmentObject var appVM: AppViewModel` and switches on `appVM.state` (type `AppState`).
 - **AppState (Core/Domain/Entities/AppState.swift):**  
-  `loading` | `firstLaunch(URL)` | `game` | `web(URL)` | `askNotifications(URL)` | `error(String)` | `noInternet`.  
+  `loading` | `firstLaunch(URL)` | `native` | `testState` | `web(URL)` | `askNotifications(URL)` | `error(String)` | `noInternet`.  
   This single enum drives which screen is shown (LoadingView, FirstLaunchScreen, MainTabView, WebWindow, error text, NoInternetScreen, etc.).
 - **AppViewModel:** Depends only on `AppInitializerUseCaseProtocol` and `PushTokenProviderProtocol`. `start()` calls the use case and updates `state`; RootView reacts to `state`.
-- **Game mode:** For `.game`, RootView shows `MainTabView()`. Game background (`Image("gameBackground")`) is drawn **inside** each tab/screen (ZStack with image + content), not in RootView. For lists: `.scrollContentBackground(.hidden)` and `.listRowBackground(Color.clear)` so background shows through.
+- **Native shell (`AppState.native`):** RootView shows `MainTabView()`. The template uses a system grouped background only; catalog images such as `gameBackground` are intended for a later design/theme agent pass and are not wired in `MainTabView` until then. When you add themed tabs, use a ZStack background per screen if needed; for lists: `.scrollContentBackground(.hidden)` and `.listRowBackground(Color.clear)` so a custom background shows through.
 
 ---
 
 ## 6. Configuration and debug flags
 
-- **AppConfiguration** (`Infrastructure/Configuration/AppConfiguration.swift`): Reads server URL, store ID, Firebase project ID, AppsFlyer dev key from Bundle (Info.plist). Values are set via xcconfig: `Resources/Configurations/Debug.xcconfig`, `Staging.xcconfig`, `Release.xcconfig` using `INFOPLIST_KEY_*` keys.
+- **AppConfiguration** (`Infrastructure/Configuration/AppConfiguration.swift`): Reads server URL, store ID, Firebase project ID, AppsFlyer dev key from Bundle (Info.plist) when keys exist; otherwise uses defaults from `StartupDefaultsConfiguration.swift`. Optional plist overrides can still be supplied via Xcode Build Settings / `INFOPLIST_KEY_*`.
 - **Debug / feature flags** (used by `InitializeAppUseCase` and UI):  
   `isDebug`, `isGameOnly`, `isWebOnly`, `isNoNetwork`, `isAskNotifications`, `isInfinityLoading`.  
   Set in `AppConfiguration` init (defaults in code); can override for debugging (e.g. force only game, only WebView, only no-internet screen, only notifications screen, infinite loading).
@@ -189,7 +188,7 @@ If the screen belongs to an existing feature (e.g. WebView, AppInitialization):
 - **"Cannot find type X in scope"** — Ensure the file that defines X is in the same target (BaseProject) as the file that uses it.
 - **Circular dependencies** — Domain must not import Data or Presentation. Data must not import Presentation.
 - **Container is nil** — Use `guard let container else { ... }` when reading `@Environment(\.dependencyContainer)`; container is set only at root in BaseProject.
-- **Game background not visible in lists** — Use `.scrollContentBackground(.hidden)` and `.listRowBackground(Color.clear)` and draw background in the same view (ZStack with `Image("gameBackground")`).
+- **Custom background not visible in lists** — Use `.scrollContentBackground(.hidden)` and `.listRowBackground(Color.clear)` and draw the background in the same view (e.g. ZStack with your image or color).
 
 ---
 

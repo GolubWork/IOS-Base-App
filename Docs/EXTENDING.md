@@ -152,33 +152,24 @@ Multiple schemes found but you haven't specified one.
 | Реализация репозитория, работа с сетью/БД | `Features/<ИмяФичи>/Data/` или `Core/Data/` |
 | ViewModel и экраны (SwiftUI) | `Features/<ИмяФичи>/Presentation/` или `Core/Presentation/` |
 | Регистрация зависимостей (DI) | `Infrastructure/DI/DependencyContainer.swift`, `App/AppDependencies.swift` |
-| Конфигурация (URL, ключи) | `Infrastructure/Configuration/`, xcconfig в `Resources/Configurations/` |
+| Конфигурация (URL, ключи) | `Infrastructure/Configuration/` (`StartupDefaultsConfiguration`, `AppConfiguration`) |
 
 Правило: **Domain** не знает о UI и о конкретных реализациях. **Data** реализует протоколы из Domain. **Presentation** использует только протоколы (use cases, репозитории), которые передаются через контейнер зависимостей.
 
-### 4.1. Заполнение полей в Resources/Configurations
+### 4.1. Заполнение полей в StartupDefaultsConfiguration
 
-Параметры сборки (URL сервера, идентификаторы магазина, Firebase, AppsFlyer и т.п.) задаются в xcconfig-файлах в папке **`Resources/Configurations/`**: `Debug.xcconfig`, `Staging.xcconfig`, `Release.xcconfig`. Значения из xcconfig подставляются в Build Settings и через `INFOPLIST_KEY_*` — в Info.plist; приложение читает их через `AppConfiguration` (см. `Infrastructure/Configuration/AppConfiguration.swift`).
+Параметры старта (URL сервера, идентификаторы магазина, Firebase, AppsFlyer и feature flags) задаются в **`Infrastructure/Configuration/StartupDefaultsConfiguration.swift`** — статические значения по умолчанию. `AppConfiguration` подставляет их, если в Bundle (Info.plist) нет переопределения (ключи `SERVER_URL`, `STORE_ID`, и т.д. можно задать в Build Settings при необходимости).
 
-**Что заполнить в каждом xcconfig (подставьте свои значения):**
+**Что заполнить (подставьте свои значения в соответствующие `static let`):**
 
-| Переменная | Описание |
-|------------|----------|
-| `SERVER_URL` | URL конфигурационного сервера (например, `https://your-server.com/config.php`) |
-| `STORE_ID` | Идентификатор приложения в App Store (числовой, без префикса `id`) |
-| `FIREBASE_PROJECT_ID` | Идентификатор проекта Firebase |
-| `APPSFLYER_DEV_KEY` | Dev Key из кабинета AppsFlyer |
+| Свойство | Описание |
+|----------|----------|
+| `serverURL` | URL конфигурационного сервера (например, `https://your-server.com/config.php`) |
+| `storeId` | Идентификатор приложения в App Store (числовой, без префикса `id`) |
+| `firebaseProjectId` | Идентификатор проекта Firebase |
+| `appsFlyerDevKey` | Dev Key из кабинета AppsFlyer |
 
-В каждом файле уже есть строки для подстановки в Info.plist:
-
-```
-INFOPLIST_KEY_SERVER_URL = $(SERVER_URL)
-INFOPLIST_KEY_STORE_ID = $(STORE_ID)
-INFOPLIST_KEY_FIREBASE_PROJECT_ID = $(FIREBASE_PROJECT_ID)
-INFOPLIST_KEY_APPSFLYER_DEV_KEY = $(APPSFLYER_DEV_KEY)
-```
-
-Их не нужно удалять: они передают значения в Bundle, откуда их читает `AppConfiguration`.
+Остальные булевы флаги в том же файле — для отладки и принудительных веток старта; в релизе обычно остаются `false`.
 
 ### 4.2. Замена GoogleService-Info.plist
 
@@ -969,7 +960,7 @@ struct MainTabView: View {
 
 После сохранения файлов проект должен собираться. Запустите приложение и проверьте три экрана: генератор (слайдер 4–32, кастомные чекбоксы, тёмная тема с `gameBackground`, кнопки Generate и Copy); сохранение (ввод имени и пароля, кнопка Save Password с индикатором «Saved!»); список сохранённых паролей (карточки с названием и паролем, кнопка удаления «X», копирование по нажатию на карточку).
 
-**Фон в режиме игры (база):** в `RootView` для `.game` показывается только `MainTabView()` — без общего ZStack с картинкой. Фон `gameBackground` рисуется **внутри каждого экрана**: фоновый слой через `.background(backgroundLayer.ignoresSafeArea())`, контент сверху в ZStack. Если картинка `gameBackground` не найдена в ассетах, используется системный цвет `Color(.systemGroupedBackground)` как fallback. Новые экраны в режиме игры делайте по той же схеме.
+**Фон в нативном шелле (база):** в `RootView` для `AppState.native` показывается только `MainTabView()` — шаблон использует системный фон и **не** подключает ассет `gameBackground` (он для прохода дизайн/темы). В учебном примере ниже фон задаётся **внутри каждого таб-экрана** (ZStack + при необходимости `Image("gameBackground")`). Новые экраны с кастомным фоном делайте по той же схеме.
 
 ![Result Screen 1](images/result-1.png)
 ![Result Screen 2](images/result-2.png)
@@ -1040,7 +1031,7 @@ final class GeneratePasswordUseCase: GeneratePasswordUseCaseProtocol {
 - **Core** — общий Domain, Data, Presentation (то, что не привязано к одной фиче).
 - **Features/<ИмяФичи>** — Domain (сущности, протоколы), Data (реализации), Presentation (ViewModel, Views).
 - **Infrastructure** — конфигурация, DI, логирование.
-- **Resources** — ассеты, xcconfig, Preview Content.
+- **Resources** — ассеты, Preview Content.
 
 Новые Swift-файлы, созданные в этих папках, должны быть добавлены в основной app target (и при необходимости в таргет расширения, если код используется там). При использовании File System Synchronized Groups файлы под папками `App`, `Core`, `Features`, `Infrastructure`, `Resources` подхватываются автоматически.
 

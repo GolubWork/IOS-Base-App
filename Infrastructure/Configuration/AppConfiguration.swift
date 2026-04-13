@@ -1,7 +1,6 @@
 import Foundation
 
-/// Keys for configuration values injected from Build Settings / Info.plist (see xcconfig and INFOPLIST_KEY_*).
-/// IS_DEBUG and FORCE_DEBUG_MODE are merged from Resources/Configurations when the app target uses the xcconfig chain.
+/// Keys for optional overrides from the app Bundle (Info.plist), e.g. via Xcode Build Settings / `INFOPLIST_KEY_*`.
 enum AppConfigurationBundleKey {
     static let serverURL = "SERVER_URL"
     static let storeId = "STORE_ID"
@@ -14,11 +13,10 @@ enum AppConfigurationBundleKey {
 }
 
 /// Default implementation of app configuration.
-/// Server/API keys are read from Bundle (Info.plist) — set via xcconfig/Build Settings per scheme (Debug/Staging/Release).
-/// Fallback defaults are used when keys are missing (e.g. running from Xcode without xcconfig attached).
+/// Bundle (Info.plist) values override `StartupDefaultsConfiguration` when present.
 final class AppConfiguration: AppConfigurationProtocol {
 
-    // MARK: - Server & identifiers (from Bundle / xcconfig)
+    // MARK: - Server & identifiers (from Bundle, else defaults)
 
     let serverURL: String
     let storeId: String
@@ -46,13 +44,20 @@ final class AppConfiguration: AppConfigurationProtocol {
     let isInfinityLoading: Bool
     let isForceOpenTestState: Bool
 
-    // MARK: - Defaults (fallback when not in Bundle/xcconfig)
+    // MARK: - Defaults (fallback when not in Bundle)
 
     private static let defaultServerURL = StartupDefaultsConfiguration.serverURL
     private static let defaultStoreId = StartupDefaultsConfiguration.storeId
     private static let defaultFirebaseProjectId = StartupDefaultsConfiguration.firebaseProjectId
     private static let defaultAppsFlyerDevKey = StartupDefaultsConfiguration.appsFlyerDevKey
-    private static let defaultIsDebug = StartupDefaultsConfiguration.isDebug
+    /// Debug builds use `true` when plist has no `IS_DEBUG`; otherwise `StartupDefaultsConfiguration.isDebug`.
+    private static var defaultIsDebug: Bool {
+        #if DEBUG
+        return true
+        #else
+        return StartupDefaultsConfiguration.isDebug
+        #endif
+    }
     private static let defaultIsGameOnly = StartupDefaultsConfiguration.isGameOnly
     private static let defaultIsWebOnly = StartupDefaultsConfiguration.isWebOnly
     private static let defaultIsNoNetwork = StartupDefaultsConfiguration.isNoNetwork

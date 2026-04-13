@@ -35,6 +35,7 @@ enum AppDependencies {
             logger: logger
         )
         let fetchConversionDataUseCase = FetchConversionDataUseCase(conversionDataRepository: conversionDataRepository)
+        let atsHostRegistrar = AppTransportSecurityHostRegistrar()
         let initializeAppUseCase = InitializeAppUseCase(
             configuration: configuration,
             fetchConversionDataUseCase: fetchConversionDataUseCase,
@@ -43,7 +44,8 @@ enum AppDependencies {
             networkConnectivityChecker: networkConnectivityChecker,
             fcmTokenDataSource: fcmTokenLocalDataSource,
             startupStateStore: startupStateStore,
-            logger: logger
+            logger: logger,
+            atsHostRegistrar: atsHostRegistrar
         )
         let pushTokenProvider = FCMTokenProvider(
             fcmTokenDataSource: fcmTokenLocalDataSource,
