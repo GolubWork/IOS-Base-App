@@ -1,17 +1,38 @@
 import SwiftUI
 
 /// Main native shell placeholder. Extend with your tabs and content in the host app.
-/// Uses a neutral system background only. Brand assets such as `gameBackground` are filled by the
-/// design/theme agent pass; this template does not draw them until that integration is added.
+/// Layout follows the same fullscreen discipline as IOS-RoosterVault (GeometryReader, explicit
+/// background frames, Spacer-based centering). Theme colors/gradients come from the design pass.
 struct MainTabView: View {
     var body: some View {
-        ZStack {
-            Color(.systemGroupedBackground)
-                .ignoresSafeArea()
+        GeometryReader { geometry in
+            let w = geometry.size.width
+            let h = geometry.size.height
+            ZStack {
+                Color(.systemGroupedBackground)
+                    .frame(width: w, height: h)
+                    .clipped()
 
-            Text("Native shell")
-                .font(.title)
-                .foregroundColor(.secondary)
+                VStack(spacing: 0) {
+                    Spacer(minLength: 0)
+                    HStack(spacing: 0) {
+                        Spacer(minLength: 0)
+                        VStack(spacing: 12) {
+                            Text("Native shell")
+                                .font(.title)
+                                .foregroundColor(.secondary)
+                                .multilineTextAlignment(.center)
+                        }
+                        .frame(maxWidth: min(w * 0.88, 420))
+                        Spacer(minLength: 0)
+                    }
+                    Spacer(minLength: 0)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
+            .frame(width: w, height: h)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .ignoresSafeArea()
     }
 }

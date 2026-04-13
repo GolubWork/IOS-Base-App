@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8327ff6a-3dfc-4f4c-b101-4d7207e77a13" name="Changes" comment="" />
+    <list default="true" id="8327ff6a-3dfc-4f4c-b101-4d7207e77a13" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Core/Presentation/Views/LoadingView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Presentation/Views/LoadingView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Presentation/Views/MainTabView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Presentation/Views/MainTabView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Presentation/Views/RootView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Presentation/Views/RootView.swift" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/Presentation/Views/WebWindow.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Presentation/Views/WebWindow.swift" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +72,7 @@
       <workItem from="1770772996511" duration="98000" />
       <workItem from="1770912205015" duration="81000" />
       <workItem from="1772110018367" duration="229000" />
+      <workItem from="1776085226982" duration="2385000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -116,7 +122,31 @@
       <option name="project" value="LOCAL" />
       <updated>1772110054366</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="update backend">
+      <option name="closed" value="true" />
+      <created>1776085246918</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1776085246918</updated>
+    </task>
+    <task id="LOCAL-00008" summary="test mode bugFix">
+      <option name="closed" value="true" />
+      <created>1776108724141</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1776108724141</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fixes">
+      <option name="closed" value="true" />
+      <created>1776115461902</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1776115461902</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +172,9 @@
     <MESSAGE value="removed unnessesary readme" />
     <MESSAGE value="fix: payload | feat: ATT" />
     <MESSAGE value="feat: ATT" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: ATT" />
+    <MESSAGE value="update backend" />
+    <MESSAGE value="test mode bugFix" />
+    <MESSAGE value="fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
   </component>
 </project>

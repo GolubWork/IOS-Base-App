@@ -6,7 +6,12 @@ struct WebWindow: View {
     let url: URL
 
     var body: some View {
-        WebViewScreen(url: url)
-            .ignoresSafeArea()
+        ZStack {
+            Color.black.ignoresSafeArea()
+            WebViewScreen(url: url)
+        }
+        // Let WKWebView handle focused-field scrolling; avoid stacking SwiftUI keyboard safe-area shrink
+        // with extra UIScrollView insets (caused visible jumps, especially in landscape).
+        .ignoresSafeArea(.keyboard, edges: .bottom)
     }
 }

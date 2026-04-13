@@ -19,9 +19,24 @@ struct RootView: View {
             case .web(let url):
                 WebWindow(url: url)
             case .error(let msg):
-                Text("Error: \(msg)")
-                    .font(AppTypography.body)
-                    .foregroundColor(.red)
+                GeometryReader { geometry in
+                    let w = geometry.size.width
+                    let h = geometry.size.height
+                    VStack(spacing: 0) {
+                        Spacer(minLength: 0)
+                        HStack(spacing: 0) {
+                            Spacer(minLength: 0)
+                            Text("Error: \(msg)")
+                                .font(AppTypography.body)
+                                .foregroundColor(.red)
+                                .multilineTextAlignment(.center)
+                                .frame(maxWidth: min(w * 0.9, 400))
+                            Spacer(minLength: 0)
+                        }
+                        Spacer(minLength: 0)
+                    }
+                    .frame(width: w, height: h)
+                }
             case .askNotifications(let url):
                 FirstLaunchScreen(url: url, isAskNotificationsMode: true)
             case .noInternet:
