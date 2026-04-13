@@ -30,8 +30,11 @@ INFOPLIST_KEY_SERVER_URL = $(SERVER_URL)
 INFOPLIST_KEY_STORE_ID = $(STORE_ID)
 INFOPLIST_KEY_FIREBASE_PROJECT_ID = $(FIREBASE_PROJECT_ID)
 INFOPLIST_KEY_APPSFLYER_DEV_KEY = $(APPSFLYER_DEV_KEY)
+INFOPLIST_KEY_IS_DEBUG = "$(IS_DEBUG)"
 INFOPLIST_KEY_ASK_NOTIFICATIONS = "$(ASK_NOTIFICATIONS)"
 INFOPLIST_KEY_TEST_STATE_FORCE_OPEN = "$(TEST_STATE_FORCE_OPEN)"
+// Alias for tools/docs that refer to "force debug mode" (same value as TEST_STATE_FORCE_OPEN).
+INFOPLIST_KEY_FORCE_DEBUG_MODE = "$(TEST_STATE_FORCE_OPEN)"
 
 // Required for App Tracking Transparency (ATT) system prompt.
 INFOPLIST_KEY_NSUserTrackingUsageDescription = "This allows us to measure and improve your experience and app performance."

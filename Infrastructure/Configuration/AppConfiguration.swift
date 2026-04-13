@@ -1,13 +1,16 @@
 import Foundation
 
 /// Keys for configuration values injected from Build Settings / Info.plist (see xcconfig and INFOPLIST_KEY_*).
+/// IS_DEBUG and FORCE_DEBUG_MODE are merged from Resources/Configurations when the app target uses the xcconfig chain.
 enum AppConfigurationBundleKey {
     static let serverURL = "SERVER_URL"
     static let storeId = "STORE_ID"
     static let firebaseProjectId = "FIREBASE_PROJECT_ID"
     static let appsFlyerDevKey = "APPSFLYER_DEV_KEY"
+    static let isDebug = "IS_DEBUG"
     static let askNotifications = "ASK_NOTIFICATIONS"
     static let testStateForceOpen = "TEST_STATE_FORCE_OPEN"
+    static let forceDebugMode = "FORCE_DEBUG_MODE"
 }
 
 /// Default implementation of app configuration.
@@ -95,7 +98,10 @@ final class AppConfiguration: AppConfigurationProtocol {
         self.noInternetMessage = noInternetMessage
         self.notificationSubtitle = notificationSubtitle
         self.notificationDescription = notificationDescription
-        self.isDebug = isDebug
+        self.isDebug = Self.resolveBoolValue(
+            infoValue: info[AppConfigurationBundleKey.isDebug],
+            fallback: isDebug
+        )
         self.isGameOnly = isGameOnly
         self.isWebOnly = isWebOnly
         self.isNoNetwork = isNoNetwork
@@ -106,7 +112,10 @@ final class AppConfiguration: AppConfigurationProtocol {
         self.isInfinityLoading = isInfinityLoading
         self.isForceOpenTestState = isForceOpenTestState ?? Self.resolveBoolValue(
             infoValue: info[AppConfigurationBundleKey.testStateForceOpen],
-            fallback: Self.defaultIsForceOpenTestState
+            fallback: Self.resolveBoolValue(
+                infoValue: info[AppConfigurationBundleKey.forceDebugMode],
+                fallback: Self.defaultIsForceOpenTestState
+            )
         )
     }
 

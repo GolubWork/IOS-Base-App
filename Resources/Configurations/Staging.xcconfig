@@ -1,1 +1,2 @@
+#include "../../Pods/Target Support Files/Pods-PodsShared-BaseProject/Pods-PodsShared-BaseProject.staging.xcconfig"
 #include "CommonRuntime.xcconfig"
