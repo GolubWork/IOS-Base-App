@@ -4,31 +4,38 @@ import SwiftUI
 /// Layout follows the same fullscreen discipline as IOS-RoosterVault (GeometryReader, explicit
 /// background frames, Spacer-based centering). Theme colors/gradients come from the design pass.
 struct MainTabView: View {
+    @Environment(\.dependencyContainer) private var dependencyContainer
+    @StateObject private var fallbackTimerSessionStore = InMemoryTimerSessionStore()
+
     var body: some View {
+        let timerSessionStore = dependencyContainer?.timerSessionStore ?? fallbackTimerSessionStore
         GeometryReader { geometry in
             let w = geometry.size.width
             let h = geometry.size.height
             ZStack {
-                Color(.systemGroupedBackground)
+                GameThemePalette.skyBackgroundGradient
                     .frame(width: w, height: h)
                     .clipped()
 
-                VStack(spacing: 0) {
-                    Spacer(minLength: 0)
-                    HStack(spacing: 0) {
-                        Spacer(minLength: 0)
-                        VStack(spacing: 12) {
-                            Text("Native shell")
-                                .font(.title)
-                                .foregroundColor(.secondary)
-                                .multilineTextAlignment(.center)
-                        }
-                        .frame(maxWidth: min(w * 0.88, 420))
-                        Spacer(minLength: 0)
+                TabView {
+                    NavigationStack {
+                        TimerScreen(viewModel: TimerViewModel(timerSessionStore: timerSessionStore))
                     }
-                    Spacer(minLength: 0)
+                    .tabItem {
+                        Label("Timer", systemImage: "timer")
+                    }
+
+                    NavigationStack {
+                        HistoryScreen(viewModel: HistoryViewModel(timerSessionStore: timerSessionStore))
+                    }
+                    .tabItem {
+                        Label("History", systemImage: "clock.arrow.circlepath")
+                    }
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .tint(GameThemePalette.chickenGoldenYellow)
+                .toolbarBackground(.visible, for: .tabBar)
+                .toolbarBackground(GameThemePalette.chickenSkyTop.opacity(0.92), for: .tabBar)
+                .toolbarColorScheme(.dark, for: .tabBar)
             }
             .frame(width: w, height: h)
         }

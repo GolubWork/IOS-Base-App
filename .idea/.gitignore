@@ -2,8 +2,8 @@
 /shelf/
 /workspace.xml
 # Rider ignored files
+/.idea.IOS-RoosterVault.iml
 /projectSettingsUpdater.xml
-/.idea.IOS-Base-App.iml
 /contentModel.xml
 /modules.xml
 # Editor-based HTTP Client requests

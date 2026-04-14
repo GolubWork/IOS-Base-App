@@ -6,7 +6,7 @@ struct NWPathNetworkConnectivityChecker: NetworkConnectivityCheckingProtocol {
     func isNetworkReachable() async -> Bool {
         await withCheckedContinuation { continuation in
             let monitor = NWPathMonitor()
-            let queue = DispatchQueue(label: "com.baseproject.networkConnectivity")
+            let queue = DispatchQueue(label: "com.testproject.networkConnectivity")
             monitor.pathUpdateHandler = { path in
                 monitor.cancel()
                 continuation.resume(returning: path.status == .satisfied)
