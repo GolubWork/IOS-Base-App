@@ -1,5 +1,6 @@
 import Foundation
 import UserNotifications
+import FirebaseMessaging
 
 /// <summary>
 /// Notification service extension to handle rich push notifications,
@@ -24,10 +25,13 @@ class NotificationService: UNNotificationServiceExtension {
 
         let userInfo = request.content.userInfo
 
-        // If no LP_URL key exists, deliver the notification as-is
+        // If no LP_URL key exists, let Firebase helper process rich media from FCM payload
         guard let attachmentMedia = userInfo[imageKey] as? String,
               let mediaUrl = URL(string: attachmentMedia) else {
-            contentHandler(bestAttemptContent)
+            Messaging.serviceExtension().populateNotificationContent(
+                bestAttemptContent,
+                withContentHandler: contentHandler
+            )
             return
         }
 
