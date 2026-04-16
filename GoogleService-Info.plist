@@ -3,28 +3,28 @@
 <plist version="1.0">
 <dict>
 	<key>API_KEY</key>
-	<string>AIzaSyARWwg04mfo1An0uzAAy6U9XLLsu_qK3X8</string>
+	<string>AIzaSyAPSzSILFfi3iEF0w6_XqwFiEUbDNUerXY</string>
 	<key>GCM_SENDER_ID</key>
-	<string>662865312172</string>
+	<string>487557931280</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.med.laughingdrops</string>
+	<string>com.med.roostervault</string>
 	<key>PROJECT_ID</key>
-	<string>laughing-drops-496d4</string>
+	<string>rostervault-5a2fa</string>
 	<key>STORAGE_BUCKET</key>
-	<string>laughing-drops-496d4.firebasestorage.app</string>
+	<string>rostervault-5a2fa.firebasestorage.app</string>
 	<key>IS_ADS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:662865312172:ios:527c3366556d1425cfe209</string>
+	<string>1:487557931280:ios:03eea6850aee2d8f52c595</string>
 </dict>
 </plist>

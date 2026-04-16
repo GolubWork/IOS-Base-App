@@ -4,34 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8327ff6a-3dfc-4f4c-b101-4d7207e77a13" name="Changes" comment="" />
+    <list default="true" id="89f90c1a-bcf8-4cbd-8933-8bdc854553d5" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="102" />
-    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="ROOT_SYNC" value="DONT_SYNC" />
-  </component>
-  <component name="McpProjectServerCommands">
-    <commands />
-    <urls />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 4
+  &quot;associatedIndex&quot;: 1
 }</component>
-  <component name="ProjectId" id="39QkLPKna2g0e0HCS1IrLN6tsCw" />
+  <component name="ProjectId" id="39tR8EZJDp81RAFJyAl99kY23DD" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -39,10 +25,8 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -55,102 +39,335 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8327ff6a-3dfc-4f4c-b101-4d7207e77a13" name="Changes" comment="" />
-      <created>1770635626351</created>
+      <changelist id="89f90c1a-bcf8-4cbd-8933-8bdc854553d5" name="Changes" comment="" />
+      <created>1771513219689</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1770635626351</updated>
-      <workItem from="1770635627648" duration="178000" />
-      <workItem from="1770635810380" duration="159000" />
-      <workItem from="1770739463694" duration="4928000" />
-      <workItem from="1770763609577" duration="2648000" />
-      <workItem from="1770772996511" duration="98000" />
-      <workItem from="1770912205015" duration="81000" />
-      <workItem from="1772110018367" duration="229000" />
-      <workItem from="1776085226982" duration="2385000" />
-      <workItem from="1776118287464" duration="1103000" />
+      <updated>1771513219689</updated>
+      <workItem from="1771513221844" duration="3389000" />
+      <workItem from="1772106514940" duration="688000" />
+      <workItem from="1772540475204" duration="1360000" />
+      <workItem from="1772542560537" duration="1154000" />
+      <workItem from="1773139398555" duration="4028000" />
+      <workItem from="1773400017098" duration="4318000" />
+      <workItem from="1774017930549" duration="4410000" />
+      <workItem from="1774534588446" duration="293000" />
+      <workItem from="1774907928935" duration="9815000" />
+      <workItem from="1775770359437" duration="898000" />
     </task>
-    <task id="LOCAL-00001" summary="init">
+    <task id="LOCAL-00001" summary="v.0">
       <option name="closed" value="true" />
-      <created>1770635705987</created>
+      <created>1771517136433</created>
       <option name="number" value="00001" />
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
-      <updated>1770635705987</updated>
+      <updated>1771517136433</updated>
     </task>
-    <task id="LOCAL-00002" summary="init">
+    <task id="LOCAL-00002" summary="objectVersion fix">
       <option name="closed" value="true" />
-      <created>1770635829296</created>
+      <created>1771517826723</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1770635829296</updated>
+      <updated>1771517826723</updated>
     </task>
-    <task id="LOCAL-00003" summary="alpha_base">
+    <task id="LOCAL-00003" summary="sheme fix">
       <option name="closed" value="true" />
-      <created>1770772666010</created>
+      <created>1771518655060</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1770772666010</updated>
+      <updated>1771518655060</updated>
     </task>
-    <task id="LOCAL-00004" summary="removed unnessesary readme">
+    <task id="LOCAL-00004" summary="feat: ATT">
       <option name="closed" value="true" />
-      <created>1770773039941</created>
+      <created>1772106790289</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1770773039941</updated>
+      <updated>1772106790289</updated>
     </task>
-    <task id="LOCAL-00005" summary="fix: payload | feat: ATT">
+    <task id="LOCAL-00005" summary="upd: cur proj ver">
       <option name="closed" value="true" />
-      <created>1770912280588</created>
+      <created>1772108189914</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1770912280588</updated>
+      <updated>1772108189914</updated>
     </task>
-    <task id="LOCAL-00006" summary="feat: ATT">
+    <task id="LOCAL-00006" summary="grey">
       <option name="closed" value="true" />
-      <created>1772110054366</created>
+      <created>1772540487025</created>
       <option name="number" value="00006" />
       <option name="presentableId" value="LOCAL-00006" />
       <option name="project" value="LOCAL" />
-      <updated>1772110054366</updated>
+      <updated>1772540487025</updated>
     </task>
-    <task id="LOCAL-00007" summary="update backend">
+    <task id="LOCAL-00007" summary="fix">
       <option name="closed" value="true" />
-      <created>1776085246918</created>
+      <created>1772541196879</created>
       <option name="number" value="00007" />
       <option name="presentableId" value="LOCAL-00007" />
       <option name="project" value="LOCAL" />
-      <updated>1776085246918</updated>
+      <updated>1772541196879</updated>
     </task>
-    <task id="LOCAL-00008" summary="test mode bugFix">
+    <task id="LOCAL-00008" summary="fix">
       <option name="closed" value="true" />
-      <created>1776108724141</created>
+      <created>1772541546370</created>
       <option name="number" value="00008" />
       <option name="presentableId" value="LOCAL-00008" />
       <option name="project" value="LOCAL" />
-      <updated>1776108724141</updated>
+      <updated>1772541546370</updated>
     </task>
-    <task id="LOCAL-00009" summary="fixes">
+    <task id="LOCAL-00009" summary="reinstall pods">
       <option name="closed" value="true" />
-      <created>1776115461902</created>
+      <created>1772542000728</created>
       <option name="number" value="00009" />
       <option name="presentableId" value="LOCAL-00009" />
       <option name="project" value="LOCAL" />
-      <updated>1776115461902</updated>
+      <updated>1772542000728</updated>
     </task>
-    <task id="LOCAL-00010" summary="V1.0">
+    <task id="LOCAL-00010" summary="fix">
       <option name="closed" value="true" />
-      <created>1776118388511</created>
+      <created>1772542568129</created>
       <option name="number" value="00010" />
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
-      <updated>1776118388511</updated>
+      <updated>1772542568129</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="fix">
+      <option name="closed" value="true" />
+      <created>1772542859503</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1772542859503</updated>
+    </task>
+    <task id="LOCAL-00012" summary="upd build version">
+      <option name="closed" value="true" />
+      <created>1772543210713</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1772543210713</updated>
+    </task>
+    <task id="LOCAL-00013" summary="apps fix">
+      <option name="closed" value="true" />
+      <created>1773139415319</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1773139415319</updated>
+    </task>
+    <task id="LOCAL-00014" summary="webView fix">
+      <option name="closed" value="true" />
+      <created>1773139565999</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1773139565999</updated>
+    </task>
+    <task id="LOCAL-00015" summary="upd build version">
+      <option name="closed" value="true" />
+      <created>1773139617788</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1773139617788</updated>
+    </task>
+    <task id="LOCAL-00016" summary="fix">
+      <option name="closed" value="true" />
+      <created>1773317069690</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1773317069690</updated>
+    </task>
+    <task id="LOCAL-00017" summary="proj ver">
+      <option name="closed" value="true" />
+      <created>1773317113661</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1773317113661</updated>
+    </task>
+    <task id="LOCAL-00018" summary="debugMode">
+      <option name="closed" value="true" />
+      <created>1773323965732</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1773323965732</updated>
+    </task>
+    <task id="LOCAL-00019" summary="fix">
+      <option name="closed" value="true" />
+      <created>1773324021350</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1773324021350</updated>
+    </task>
+    <task id="LOCAL-00020" summary="fix">
+      <option name="closed" value="true" />
+      <created>1773663167850</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1773663167850</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix">
+      <option name="closed" value="true" />
+      <created>1773843581488</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1773843581488</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fix">
+      <option name="closed" value="true" />
+      <created>1774006716948</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1774006716948</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fix">
+      <option name="closed" value="true" />
+      <created>1774018029069</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1774018029069</updated>
+    </task>
+    <task id="LOCAL-00024" summary="debug">
+      <option name="closed" value="true" />
+      <created>1774355382461</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1774355382461</updated>
+    </task>
+    <task id="LOCAL-00025" summary="notification fix">
+      <option name="closed" value="true" />
+      <created>1774363962672</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1774363962672</updated>
+    </task>
+    <task id="LOCAL-00026" summary="minor fix">
+      <option name="closed" value="true" />
+      <created>1774364382830</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1774364382830</updated>
+    </task>
+    <task id="LOCAL-00027" summary="notifi image fix">
+      <option name="closed" value="true" />
+      <created>1774527900991</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1774527900991</updated>
+    </task>
+    <task id="LOCAL-00028" summary="debug">
+      <option name="closed" value="true" />
+      <created>1774534611649</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1774534611649</updated>
+    </task>
+    <task id="LOCAL-00029" summary="fix">
+      <option name="closed" value="true" />
+      <created>1774907996285</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1774907996285</updated>
+    </task>
+    <task id="LOCAL-00030" summary="fix">
+      <option name="closed" value="true" />
+      <created>1774908057204</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1774908057204</updated>
+    </task>
+    <task id="LOCAL-00031" summary="visual fix">
+      <option name="closed" value="true" />
+      <created>1775501174588</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1775501174588</updated>
+    </task>
+    <task id="LOCAL-00032" summary="fix">
+      <option name="closed" value="true" />
+      <created>1775503286715</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1775503286715</updated>
+    </task>
+    <task id="LOCAL-00033" summary="fix">
+      <option name="closed" value="true" />
+      <created>1775568883717</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1775568883717</updated>
+    </task>
+    <task id="LOCAL-00034" summary="fix">
+      <option name="closed" value="true" />
+      <created>1775637631366</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1775637631366</updated>
+    </task>
+    <task id="LOCAL-00035" summary="push fix">
+      <option name="closed" value="true" />
+      <created>1775647893753</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1775647893753</updated>
+    </task>
+    <task id="LOCAL-00036" summary="fix">
+      <option name="closed" value="true" />
+      <created>1775728610273</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1775728610273</updated>
+    </task>
+    <task id="LOCAL-00037" summary="pj version">
+      <option name="closed" value="true" />
+      <created>1775728643987</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1775728643987</updated>
+    </task>
+    <task id="LOCAL-00038" summary="fix">
+      <option name="closed" value="true" />
+      <created>1775742451680</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1775742451680</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fix">
+      <option name="closed" value="true" />
+      <created>1775770387418</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1775770387418</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,15 +388,26 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="init" />
-    <MESSAGE value="alpha_base" />
-    <MESSAGE value="removed unnessesary readme" />
-    <MESSAGE value="fix: payload | feat: ATT" />
+    <MESSAGE value="v.0" />
+    <MESSAGE value="objectVersion fix" />
+    <MESSAGE value="sheme fix" />
     <MESSAGE value="feat: ATT" />
-    <MESSAGE value="update backend" />
-    <MESSAGE value="test mode bugFix" />
-    <MESSAGE value="fixes" />
-    <MESSAGE value="V1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="V1.0" />
+    <MESSAGE value="upd: cur proj ver" />
+    <MESSAGE value="grey" />
+    <MESSAGE value="reinstall pods" />
+    <MESSAGE value="apps fix" />
+    <MESSAGE value="webView fix" />
+    <MESSAGE value="upd build version" />
+    <MESSAGE value="proj ver" />
+    <MESSAGE value="debugMode" />
+    <MESSAGE value="notification fix" />
+    <MESSAGE value="minor fix" />
+    <MESSAGE value="notifi image fix" />
+    <MESSAGE value="debug" />
+    <MESSAGE value="visual fix" />
+    <MESSAGE value="push fix" />
+    <MESSAGE value="pj version" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
 </project>

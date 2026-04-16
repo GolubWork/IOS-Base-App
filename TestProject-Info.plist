@@ -22,10 +22,8 @@
 		<string>remote-notification</string>
 	</array>
 	<key>UIAppFonts</key>
-	<array/>
-	<key>NSCameraUsageDescription</key>
-	<string>Camera access is required to capture photos and scan visual content in the app.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone access is required to record audio and support voice features in the app.</string>
+	<array>
+		<string>Fonts/PaytoneOne-Regular.ttf</string>
+	</array>
 </dict>
 </plist>

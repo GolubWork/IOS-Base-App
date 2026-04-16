@@ -4,13 +4,13 @@ import Foundation
 /// Edit these values per app clone; `AppConfiguration` uses them when Bundle/Info.plist keys are absent.
 enum StartupDefaultsConfiguration {
     /// Example: "https://example.com/config.php"
-    static let serverURL = ""
+    static let serverURL = "https://roostervault.com/config.php"
     /// Example: "1234567890"
-    static let storeId = ""
+    static let storeId = "6759390373"
     /// Example: "123456789012"
-    static let firebaseProjectId = ""
+    static let firebaseProjectId = "487557931280"
     /// Example: "AbCdEfGhIjKlMnOpQrStUv"
-    static let appsFlyerDevKey = ""
+    static let appsFlyerDevKey = "8x9KwAfPW5gXnB3GRugY68"
 
     /// Example: true for debug diagnostics builds.
     static let isDebug = true
@@ -44,6 +44,9 @@ enum StartupDefaultsConfiguration {
     // For deep links / data, add keys at the top level of the JSON that match what your `AppDelegate` / notification handlers expect.
     
     
-    //xcrun simctl push booted <BUNDLE ID> <PUSH FILE PATH.apns>
+    // xcrun simctl push booted <BUNDLE ID> <PUSH FILE PATH.apns>
     // xcrun simctl push booted com.med.roostervault /Users/otodr/Work/src/IOS-CluckyNumbers/push1.apns
+    
+   
+    // xcrun simctl push booted com.med.roostervault /Users/otodr/Work/src/IOS-Test/push2.apns
 }

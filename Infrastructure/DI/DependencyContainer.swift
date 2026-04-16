@@ -13,6 +13,7 @@ protocol DependencyContainer: AnyObject {
     var startupStateStore: StartupStateStoreProtocol { get }
     var initializeAppUseCase: AppInitializerUseCaseProtocol { get }
     var pushTokenProvider: PushTokenProviderProtocol { get }
+    var timerSessionStore: TimerSessionStoreProtocol { get }
     var logger: Logging { get }
     var logStorage: LogStorageProtocol { get }
 }
@@ -29,6 +30,7 @@ final class DefaultDependencyContainer: DependencyContainer {
     private(set) var startupStateStore: StartupStateStoreProtocol
     private(set) var initializeAppUseCase: AppInitializerUseCaseProtocol
     private(set) var pushTokenProvider: PushTokenProviderProtocol
+    private(set) var timerSessionStore: TimerSessionStoreProtocol
     private(set) var logger: Logging
     private(set) var logStorage: LogStorageProtocol
 
@@ -43,6 +45,7 @@ final class DefaultDependencyContainer: DependencyContainer {
         startupStateStore: StartupStateStoreProtocol,
         initializeAppUseCase: AppInitializerUseCaseProtocol,
         pushTokenProvider: PushTokenProviderProtocol,
+        timerSessionStore: TimerSessionStoreProtocol,
         logger: Logging,
         logStorage: LogStorageProtocol
     ) {
@@ -55,6 +58,7 @@ final class DefaultDependencyContainer: DependencyContainer {
         self.startupStateStore = startupStateStore
         self.initializeAppUseCase = initializeAppUseCase
         self.pushTokenProvider = pushTokenProvider
+        self.timerSessionStore = timerSessionStore
         self.logger = logger
         self.logStorage = logStorage
     }

@@ -1,4 +1,4 @@
-# BaseProject
+# TestProject
 
 Базовый шаблон iOS-приложения на SwiftUI с веб-интеграцией, аналитикой и заготовкой под игровой режим. Сборка и деплой через Fastlane и GitHub Actions. Используйте этот репозиторий как стартовую точку для своего проекта.
 
@@ -35,13 +35,13 @@ bundle install
 bundle exec pod install
 ```
 
-Открыть **`BaseProject.xcworkspace`** (не `.xcodeproj`; workspace создаётся после `pod install`). Добавить `GoogleService-Info.plist` в корень проекта при использовании Firebase.
+Открыть **`TestProject.xcworkspace`** (не `.xcodeproj`; workspace создаётся после `pod install`). Добавить `GoogleService-Info.plist` в корень проекта при использовании Firebase.
 
 Стартовые URL и ключи (сервер, магазин, Firebase, AppsFlyer и feature flags): `Infrastructure/Configuration/StartupDefaultsConfiguration.swift`. Схемы сборки: Debug, Staging, Release (см. `BuildConfiguration`).
 
 ## Запуск
 
-В Xcode: схема **BaseProject** → Run.
+В Xcode: схема **TestProject** → Run.
 
 ## Подробно
 Архитектура проекта: [Docs/ARCHITECTURE.md](Docs/ARCHITECTURE.md).
@@ -50,7 +50,7 @@ bundle exec pod install
 
 Правила для GPT для работы с проектом: [Docs/GPTRULES.md](Docs/GPTRULES.md).
 
-Решение проблем с BaseProject: [Docs/TROUBLESHOOTING.md](Docs/TROUBLESHOOTING.md).
+Решение проблем с TestProject: [Docs/TROUBLESHOOTING.md](Docs/TROUBLESHOOTING.md).
 
 Решение проблем с CI: [Docs/TROUBLESHOOTING](https://github.com/GolubWork/IOS-Build-CI/blob/main/Docks/TROUBLESHOOTING.md)
 
