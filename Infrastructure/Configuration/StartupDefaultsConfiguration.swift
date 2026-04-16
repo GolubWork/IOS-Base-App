@@ -13,9 +13,9 @@ enum StartupDefaultsConfiguration {
     static let appsFlyerDevKey = ""
 
     /// Example: true for debug diagnostics builds.
-    static let isDebug = false
+    static let isDebug = true
     /// Example: true to always open game content.
-    static let isGameOnly = false
+    static let isGameOnly = true
     /// Example: true to always force web flow.
     static let isWebOnly = false
     /// Example: true to simulate no network startup.

@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8327ff6a-3dfc-4f4c-b101-4d7207e77a13" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Core/Presentation/Views/LoadingView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Presentation/Views/LoadingView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Presentation/Views/MainTabView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Presentation/Views/MainTabView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Presentation/Views/RootView.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Presentation/Views/RootView.swift" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/Presentation/Views/WebWindow.swift" beforeDir="false" afterPath="$PROJECT_DIR$/Core/Presentation/Views/WebWindow.swift" afterDir="false" />
-    </list>
+    <list default="true" id="8327ff6a-3dfc-4f4c-b101-4d7207e77a13" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,6 +68,7 @@
       <workItem from="1770912205015" duration="81000" />
       <workItem from="1772110018367" duration="229000" />
       <workItem from="1776085226982" duration="2385000" />
+      <workItem from="1776118287464" duration="1103000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -146,7 +142,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776115461902</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="V1.0">
+      <option name="closed" value="true" />
+      <created>1776118388511</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776118388511</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +179,7 @@
     <MESSAGE value="update backend" />
     <MESSAGE value="test mode bugFix" />
     <MESSAGE value="fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixes" />
+    <MESSAGE value="V1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="V1.0" />
   </component>
 </project>
