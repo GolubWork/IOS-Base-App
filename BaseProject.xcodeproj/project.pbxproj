@@ -11,7 +11,7 @@
 		C4251E072EE194B000CD6F2C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C4251E062EE194B000CD6F2C /* GoogleService-Info.plist */; };
 		C4251E092EE194B100CD6F2C /* AppTrackingTransparency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C4251E082EE194B100CD6F2C /* AppTrackingTransparency.framework */; };
 		C4251F9E2EEC2FFD00CD6F2C /* notifications.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C4251F972EEC2FFD00CD6F2C /* notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D63F14BA646E16D27859748A /* Pods_PodsShared_TestProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B378AEFE258DE4086ACA025D /* Pods_PodsShared_TestProject.framework */; };
+		D63F14BA646E16D27859748A /* Pods_PodsShared_BaseProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B378AEFE258DE4086ACA025D /* Pods_PodsShared_BaseProject.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,17 +41,17 @@
 /* Begin PBXFileReference section */
 		12F5BD32B27F85E2BE7142C1 /* Pods-PodsShared-notifications.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-notifications.debug.xcconfig"; path = "Target Support Files/Pods-PodsShared-notifications/Pods-PodsShared-notifications.debug.xcconfig"; sourceTree = "<group>"; };
 		16A09CB0037BBB661B063934 /* Pods_PodsShared_notifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodsShared_notifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		16B66ED72E948DBF7BD878EE /* Pods-PodsShared-TestProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-TestProject.debug.xcconfig"; path = "Target Support Files/Pods-PodsShared-TestProject/Pods-PodsShared-TestProject.debug.xcconfig"; sourceTree = "<group>"; };
-		16D8CC467A6207B1ABB0522F /* Pods-PodsShared-TestProject.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-TestProject.staging.xcconfig"; path = "Target Support Files/Pods-PodsShared-TestProject/Pods-PodsShared-TestProject.staging.xcconfig"; sourceTree = "<group>"; };
+		16B66ED72E948DBF7BD878EE /* Pods-PodsShared-BaseProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-BaseProject.debug.xcconfig"; path = "Target Support Files/Pods-PodsShared-BaseProject/Pods-PodsShared-BaseProject.debug.xcconfig"; sourceTree = "<group>"; };
+		16D8CC467A6207B1ABB0522F /* Pods-PodsShared-BaseProject.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-BaseProject.staging.xcconfig"; path = "Target Support Files/Pods-PodsShared-BaseProject/Pods-PodsShared-BaseProject.staging.xcconfig"; sourceTree = "<group>"; };
 		1B602CD949621F8A2ED3AABE /* Pods-PodsShared-notifications.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-notifications.staging.xcconfig"; path = "Target Support Files/Pods-PodsShared-notifications/Pods-PodsShared-notifications.staging.xcconfig"; sourceTree = "<group>"; };
-		25BCA218E90B30647E3C13C3 /* Pods-PodsShared-TestProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-TestProject.release.xcconfig"; path = "Target Support Files/Pods-PodsShared-TestProject/Pods-PodsShared-TestProject.release.xcconfig"; sourceTree = "<group>"; };
-		B378AEFE258DE4086ACA025D /* Pods_PodsShared_TestProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodsShared_TestProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C4251DD42EE193B600CD6F2C /* TestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		25BCA218E90B30647E3C13C3 /* Pods-PodsShared-BaseProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-BaseProject.release.xcconfig"; path = "Target Support Files/Pods-PodsShared-BaseProject/Pods-PodsShared-BaseProject.release.xcconfig"; sourceTree = "<group>"; };
+		B378AEFE258DE4086ACA025D /* Pods_PodsShared_BaseProject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PodsShared_BaseProject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4251DD42EE193B600CD6F2C /* BaseProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BaseProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4251E062EE194B000CD6F2C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C4251E082EE194B100CD6F2C /* AppTrackingTransparency.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppTrackingTransparency.framework; path = System/Library/Frameworks/AppTrackingTransparency.framework; sourceTree = SDKROOT; };
 		C4251F972EEC2FFD00CD6F2C /* notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		C42A3CE42F758FC300422E43 /* TestProject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "TestProject-Info.plist"; sourceTree = "<group>"; };
-		C42A3CE52F758FDA00422E43 /* TestProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TestProject.entitlements; sourceTree = "<group>"; };
+		C42A3CE42F758FC300422E43 /* BaseProject-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BaseProject-Info.plist"; sourceTree = "<group>"; };
+		C42A3CE52F758FDA00422E43 /* BaseProject.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BaseProject.entitlements; sourceTree = "<group>"; };
 		E8A7116B48743061F3AD1D43 /* Pods-PodsShared-notifications.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodsShared-notifications.release.xcconfig"; path = "Target Support Files/Pods-PodsShared-notifications/Pods-PodsShared-notifications.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -80,7 +80,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4251E092EE194B100CD6F2C /* AppTrackingTransparency.framework in Frameworks */,
-				D63F14BA646E16D27859748A /* Pods_PodsShared_TestProject.framework in Frameworks */,
+				D63F14BA646E16D27859748A /* Pods_PodsShared_BaseProject.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +98,7 @@
 		A0FB72AA0DC250DD887FA578 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B378AEFE258DE4086ACA025D /* Pods_PodsShared_TestProject.framework */,
+				B378AEFE258DE4086ACA025D /* Pods_PodsShared_BaseProject.framework */,
 				16A09CB0037BBB661B063934 /* Pods_PodsShared_notifications.framework */,
 			);
 			name = Frameworks;
@@ -107,8 +107,8 @@
 		C4251DCB2EE193B600CD6F2C = {
 			isa = PBXGroup;
 			children = (
-				C42A3CE52F758FDA00422E43 /* TestProject.entitlements */,
-				C42A3CE42F758FC300422E43 /* TestProject-Info.plist */,
+				C42A3CE52F758FDA00422E43 /* BaseProject.entitlements */,
+				C42A3CE42F758FC300422E43 /* BaseProject-Info.plist */,
 				C4251E102EE1A00000CD6F2C /* Core */,
 				C4251E112EE1A00000CD6F2C /* Features */,
 				C4251E122EE1A00000CD6F2C /* Infrastructure */,
@@ -126,7 +126,7 @@
 		C4251DD52EE193B600CD6F2C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C4251DD42EE193B600CD6F2C /* TestProject.app */,
+				C4251DD42EE193B600CD6F2C /* BaseProject.app */,
 				C4251F972EEC2FFD00CD6F2C /* notifications.appex */,
 			);
 			name = Products;
@@ -143,9 +143,9 @@
 		D322E6B28DA1B2F744FA80B5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				16B66ED72E948DBF7BD878EE /* Pods-PodsShared-TestProject.debug.xcconfig */,
-				25BCA218E90B30647E3C13C3 /* Pods-PodsShared-TestProject.release.xcconfig */,
-				16D8CC467A6207B1ABB0522F /* Pods-PodsShared-TestProject.staging.xcconfig */,
+				16B66ED72E948DBF7BD878EE /* Pods-PodsShared-BaseProject.debug.xcconfig */,
+				25BCA218E90B30647E3C13C3 /* Pods-PodsShared-BaseProject.release.xcconfig */,
+				16D8CC467A6207B1ABB0522F /* Pods-PodsShared-BaseProject.staging.xcconfig */,
 				12F5BD32B27F85E2BE7142C1 /* Pods-PodsShared-notifications.debug.xcconfig */,
 				E8A7116B48743061F3AD1D43 /* Pods-PodsShared-notifications.release.xcconfig */,
 				1B602CD949621F8A2ED3AABE /* Pods-PodsShared-notifications.staging.xcconfig */,
@@ -156,9 +156,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C4251DD32EE193B600CD6F2C /* TestProject */ = {
+		C4251DD32EE193B600CD6F2C /* BaseProject */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C4251DF82EE193BC00CD6F2C /* Build configuration list for PBXNativeTarget "TestProject" */;
+			buildConfigurationList = C4251DF82EE193BC00CD6F2C /* Build configuration list for PBXNativeTarget "BaseProject" */;
 			buildPhases = (
 				C32DCD6838CC3CAB9E7AD905 /* [CP] Check Pods Manifest.lock */,
 				C4251DD02EE193B600CD6F2C /* Sources */,
@@ -180,9 +180,9 @@
 				C4251E132EE1A00000CD6F2C /* App */,
 				C4251E142EE1A00000CD6F2C /* Resources */,
 			);
-			name = TestProject;
-			productName = TestProject;
-			productReference = C4251DD42EE193B600CD6F2C /* TestProject.app */;
+			name = BaseProject;
+			productName = BaseProject;
+			productReference = C4251DD42EE193B600CD6F2C /* BaseProject.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C4251F962EEC2FFD00CD6F2C /* notifications */ = {
@@ -225,7 +225,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C4251DCF2EE193B600CD6F2C /* Build configuration list for PBXProject "TestProject" */;
+			buildConfigurationList = C4251DCF2EE193B600CD6F2C /* Build configuration list for PBXProject "BaseProject" */;
 			compatibilityVersion = "Xcode 16.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -239,7 +239,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C4251DD32EE193B600CD6F2C /* TestProject */,
+				C4251DD32EE193B600CD6F2C /* BaseProject */,
 				C4251F962EEC2FFD00CD6F2C /* notifications */,
 			);
 		};
@@ -276,7 +276,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PodsShared-TestProject/Pods-PodsShared-TestProject-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PodsShared-BaseProject/Pods-PodsShared-BaseProject-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		505E5288AE236B729963817B /* [CP] Embed Pods Frameworks */ = {
@@ -291,7 +291,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PodsShared-TestProject/Pods-PodsShared-TestProject-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PodsShared-BaseProject/Pods-PodsShared-BaseProject-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		50C1E5CEE48B8ABE4F6D2EDC /* [CP] Check Pods Manifest.lock */ = {
@@ -331,7 +331,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-PodsShared-TestProject-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-PodsShared-BaseProject-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -502,11 +502,11 @@
 		};
 		C4251DF92EE193BC00CD6F2C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16B66ED72E948DBF7BD878EE /* Pods-PodsShared-TestProject.debug.xcconfig */;
+			baseConfigurationReference = 16B66ED72E948DBF7BD878EE /* Pods-PodsShared-BaseProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TestProject.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BaseProject.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 23;
@@ -514,8 +514,8 @@
 				DEVELOPMENT_TEAM = 9C2WB6M3U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "TestProject-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Test Project";
+				INFOPLIST_FILE = "BaseProject-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BaseProject";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"This allows us to measure and improve your experience and app performance.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -538,11 +538,11 @@
 		};
 		C4251DFA2EE193BC00CD6F2C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25BCA218E90B30647E3C13C3 /* Pods-PodsShared-TestProject.release.xcconfig */;
+			baseConfigurationReference = 25BCA218E90B30647E3C13C3 /* Pods-PodsShared-BaseProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TestProject.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BaseProject.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 23;
@@ -550,8 +550,8 @@
 				DEVELOPMENT_TEAM = 9C2WB6M3U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "TestProject-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Test Project";
+				INFOPLIST_FILE = "BaseProject-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BaseProject";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"This allows us to measure and improve your experience and app performance.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -635,11 +635,11 @@
 		};
 		C4251DFC2EE193BC00CD6F2C /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16D8CC467A6207B1ABB0522F /* Pods-PodsShared-TestProject.staging.xcconfig */;
+			baseConfigurationReference = 16D8CC467A6207B1ABB0522F /* Pods-PodsShared-BaseProject.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = TestProject.entitlements;
+				CODE_SIGN_ENTITLEMENTS = BaseProject.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 23;
@@ -647,8 +647,8 @@
 				DEVELOPMENT_TEAM = 9C2WB6M3U5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "TestProject-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Test Project";
+				INFOPLIST_FILE = "BaseProject-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "BaseProject";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "\"This allows us to measure and improve your experience and app performance.\"";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -759,7 +759,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C4251DCF2EE193B600CD6F2C /* Build configuration list for PBXProject "TestProject" */ = {
+		C4251DCF2EE193B600CD6F2C /* Build configuration list for PBXProject "BaseProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C4251DF62EE193BC00CD6F2C /* Debug */,
@@ -769,7 +769,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C4251DF82EE193BC00CD6F2C /* Build configuration list for PBXNativeTarget "TestProject" */ = {
+		C4251DF82EE193BC00CD6F2C /* Build configuration list for PBXNativeTarget "BaseProject" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C4251DF92EE193BC00CD6F2C /* Debug */,

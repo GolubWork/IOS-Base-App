@@ -5,9 +5,9 @@
 ### 2026-04-14 — OUTCOME: SUCCESS
 - **Phase:** 5
 - **Symptom:** Compile-only build failed with main-actor isolation error when creating `InMemoryTimerSessionStore` inside `AppDependencies.makeDefaultContainer()`.
-- **Checks:** Reviewed `TroubleShooting/general.md`; manual check for `RootView` native routing; `ReadLints` on touched Swift files (`MainTabView`, `RootView`, `DependencyContainer`, `AppDependencies`, `Features/Pomodoro/*`); `xcodebuild -list -workspace "TestProject.xcworkspace"`; compile-only `xcodebuild ... -destination 'generic/platform=iOS' build CODE_SIGNING_ALLOWED=NO`.
+- **Checks:** Reviewed `TroubleShooting/general.md`; manual check for `RootView` native routing; `ReadLints` on touched Swift files (`MainTabView`, `RootView`, `DependencyContainer`, `AppDependencies`, `Features/Pomodoro/*`); `xcodebuild -list -workspace "BaseProject.xcworkspace"`; compile-only `xcodebuild ... -destination 'generic/platform=iOS' build CODE_SIGNING_ALLOWED=NO`.
 - **Fix:** Added `@MainActor` to `AppDependencies.makeDefaultContainer()` in `App/AppDependencies.swift` to align call site isolation with `InMemoryTimerSessionStore` initializer.
-- **Verification:** `xcodebuild` compile-only build for scheme `TestProject` succeeds (exit code 0). `RootView` still routes `.native` to `MainTabView`. No linter errors on touched phase-5 Swift files.
+- **Verification:** `xcodebuild` compile-only build for scheme `BaseProject` succeeds (exit code 0). `RootView` still routes `.native` to `MainTabView`. No linter errors on touched phase-5 Swift files.
 
 ### 2026-04-14 — OUTCOME: SUCCESS
 - **Phase:** 5 (mandatory visual pass)

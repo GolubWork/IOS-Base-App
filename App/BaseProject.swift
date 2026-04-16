@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 import UIKit
 
-/// Holds the app view model built from the launch container. Created once when TestProject initializes.
+/// Holds the app view model built from the launch container. Created once when BaseProject initializes.
 @MainActor
 private final class AppViewModelHolder: ObservableObject {
     let container: DependencyContainer
@@ -18,10 +18,10 @@ private final class AppViewModelHolder: ObservableObject {
 }
 
 /// Main application entry point. AppDelegate creates the dependency container at launch and assigns it
-/// so TestProject can read it once to build the view model and inject into the hierarchy. No global singleton.
+/// so BaseProject can read it once to build the view model and inject into the hierarchy. No global singleton.
 @main
 @MainActor
-struct TestProject: App {
+struct BaseProject: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     @Environment(\.scenePhase) private var scenePhase
     @StateObject private var holder: AppViewModelHolder

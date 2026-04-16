@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C4251DD32EE193B600CD6F2C"
-               BuildableName = "TestProject.app"
-               BlueprintName = "TestProject"
-               ReferencedContainer = "container:TestProject.xcodeproj">
+               BuildableName = "BaseProject.app"
+               BlueprintName = "BaseProject"
+               ReferencedContainer = "container:BaseProject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -32,7 +32,7 @@
                BlueprintIdentifier = "C4251F962EEC2FFD00CD6F2C"
                BuildableName = "notifications.appex"
                BlueprintName = "notifications"
-               ReferencedContainer = "container:TestProject.xcodeproj">
+               ReferencedContainer = "container:BaseProject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -58,9 +58,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C4251DD32EE193B600CD6F2C"
-            BuildableName = "TestProject.app"
-            BlueprintName = "TestProject"
-            ReferencedContainer = "container:TestProject.xcodeproj">
+            BuildableName = "BaseProject.app"
+            BlueprintName = "BaseProject"
+            ReferencedContainer = "container:BaseProject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C4251DD32EE193B600CD6F2C"
-            BuildableName = "TestProject.app"
-            BlueprintName = "TestProject"
-            ReferencedContainer = "container:TestProject.xcodeproj">
+            BuildableName = "BaseProject.app"
+            BlueprintName = "BaseProject"
+            ReferencedContainer = "container:BaseProject.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

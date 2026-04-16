@@ -1,6 +1,6 @@
-# Архитектура TestProject
+# Архитектура BaseProject
 
-В документе описана Clean Architecture в TestProject: зоны ответственности слоёв, правила зависимостей и добавление новых фич и use cases.
+В документе описана Clean Architecture в BaseProject: зоны ответственности слоёв, правила зависимостей и добавление новых фич и use cases.
 
 ---
 

@@ -7,13 +7,13 @@ import UserNotifications
 
 /// Application delegate responsible for configuring Firebase, AppsFlyer,
 /// push notifications, and handling application lifecycle events.
-/// Holds the dependency container created at launch; TestProject reads it and passes into the view hierarchy.
+/// Holds the dependency container created at launch; BaseProject reads it and passes into the view hierarchy.
 final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     /// Current orientation lock used to restrict supported interface orientations.
     var orientationLock: UIInterfaceOrientationMask = .portrait
 
-    /// Dependency container created at launch. Set in didFinishLaunching; TestProject reads it and injects into views.
+    /// Dependency container created at launch. Set in didFinishLaunching; BaseProject reads it and injects into views.
     private(set) var container: DependencyContainer!
     weak var deepLinkRouter: DeepLinkRouter?
     private var hasStartedAppsFlyer = false
@@ -54,7 +54,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         return true
     }
 
-    /// Delivers buffered push URLs after `DeepLinkRouter` is wired (see `TestProject` `onAppear`).
+    /// Delivers buffered push URLs after `DeepLinkRouter` is wired (see `BaseProject` `onAppear`).
     @MainActor
     func flushBufferedNotificationDeepLinks(using router: DeepLinkRouter) {
         guard !bufferedNotificationIncomingURLs.isEmpty else { return }

@@ -1,7 +1,7 @@
 import Foundation
 
 /// Factory for the application dependency container. The container is created once in AppDelegate at launch,
-/// then passed into TestProject and the view hierarchy via environment. No global singleton.
+/// then passed into BaseProject and the view hierarchy via environment. No global singleton.
 ///
 /// Tests can inject a mock by setting `containerForTesting` before the app runs; AppDelegate uses it in didFinishLaunching.
 enum AppDependencies {
@@ -9,11 +9,11 @@ enum AppDependencies {
     /// If set (e.g. in tests), AppDelegate uses this instead of building a new container. Set before app launch.
     static var containerForTesting: DependencyContainer?
 
-    /// Set by AppDelegate in didFinishLaunching so TestProject can read it once to build the view model. Not a global getter.
+    /// Set by AppDelegate in didFinishLaunching so BaseProject can read it once to build the view model. Not a global getter.
     static var launchContainer: DependencyContainer? { _launchContainer }
     private static weak var _launchContainer: DependencyContainer?
 
-    /// Called by AppDelegate after creating the container. Do not use from app code; only TestProject reads launchContainer.
+    /// Called by AppDelegate after creating the container. Do not use from app code; only BaseProject reads launchContainer.
     static func setLaunchContainer(_ c: DependencyContainer?) {
         _launchContainer = c
     }

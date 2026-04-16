@@ -11,7 +11,7 @@ final class DefaultLogger: Logging {
     private lazy var osLogger = Logger(subsystem: subsystem, category: category)
 
     init(
-        subsystem: String = Bundle.main.bundleIdentifier ?? "TestProject",
+        subsystem: String = Bundle.main.bundleIdentifier ?? "BaseProject",
         category: String = "App",
         storage: LogStorageProtocol,
         isEnabled: Bool = true
